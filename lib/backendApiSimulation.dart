@@ -94,7 +94,7 @@ class NetworkProvider {
     await Future.delayed(Duration(seconds: 2));
   }
 
-  static Future<void> loginAsSender(String email, String password) async {
+  static Future<void> login(String email, String password) async {
     await delay();
     User tempUser = userDatabase.firstWhere(
             (element) => element.email == email && password == demoPassword,
@@ -158,7 +158,7 @@ final List<User> userDatabase = [
       jsWalletBalance: 5500,
       hraWalletBalance: 16580,
       phone: "0333-XXXXX66",
-      image: 'image/Asad Raza.gif',
+      image: 'images/Asad Raza.gif',
       transactions: [
         Transaction(
             receiverUserId: "0001",
