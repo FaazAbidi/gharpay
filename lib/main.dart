@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'GharPay',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+          fontFamily: "Poppins"
       ),
       home: MBSplashScreen(),
     );

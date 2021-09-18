@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gharpay/screens/MBDashBoardScreen.dart';
 import 'package:gharpay/screens/MBSignInScreen.dart';
 import 'package:gharpay/screens/MBSignUpScreen.dart';
@@ -37,7 +38,7 @@ class MBWalkThroughScreenState extends State<MBWalkThroughScreen> with AfterLayo
       Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.asset(mb_bank_logo, height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
+          SvgPicture.asset("vectors/security.svg", height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
           32.height,
           Text('Encrypted', style: boldTextStyle(size: 24)),
           16.height,
@@ -50,7 +51,7 @@ class MBWalkThroughScreenState extends State<MBWalkThroughScreen> with AfterLayo
       ).paddingOnly(top: 60),
       Column(
         children: [
-          Image.asset(mb_bank_logo, height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
+          SvgPicture.asset("vectors/remotePayments.svg", height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
           32.height,
           Text('Easy To Use', style: boldTextStyle(size: 24)),
           16.height,
@@ -63,7 +64,7 @@ class MBWalkThroughScreenState extends State<MBWalkThroughScreen> with AfterLayo
       ).paddingOnly(top: 60),
       Column(
         children: [
-          Image.asset(mb_bank_logo, height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
+          SvgPicture.asset("vectors/anywhere.svg", height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
           32.height,
           Text('Fast & Secure', style: boldTextStyle(size: 24)),
           16.height,

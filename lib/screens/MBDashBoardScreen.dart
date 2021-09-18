@@ -88,7 +88,7 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 duration: Duration(milliseconds: 800),
                 margin: EdgeInsets.only(left: 12),
                 padding: EdgeInsets.all(8),
-                child: Icon(Icons.date_range),
+                child: Icon(Icons.settings),
               ),
               label: MBTab3Text,
               activeIcon: AnimatedContainer(
@@ -98,14 +98,14 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 padding: EdgeInsets.all(8),
                 child: Row(
                   children: [
-                    Icon(Icons.date_range, color: appPrimaryColor, size: 20),
+                    Icon(Icons.settings, color: appPrimaryColor, size: 20),
                     Text(MBTab3Text, style: boldTextStyle(color: appPrimaryColor, size: 11)).center().expand(),
                   ],
                 ),
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.message),
+              icon: Icon(Icons.person),
               label: MBTab2Text,
               activeIcon: AnimatedContainer(
                 decoration: boxDecorationWithRoundedCorners(backgroundColor: Colors.white),
@@ -114,7 +114,7 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 padding: EdgeInsets.all(8),
                 child: Row(
                   children: [
-                    Icon(Icons.message, color: appPrimaryColor, size: 20),
+                    Icon(Icons.person, color: appPrimaryColor, size: 20),
                     Text(MBTab4Text, style: boldTextStyle(color: appPrimaryColor, size: 11)).center().expand(),
                   ],
                 ),

@@ -22,7 +22,7 @@ class MBHomeScreen extends StatefulWidget {
 class MBHomeScreenState extends State<MBHomeScreen> {
   List<BudgetDetails> budgetDetailList = getBudgetDetailList();
   List<BudgetDetails> operationsList = getOperationsList();
-  List<BudgetDetails> completeList = getCompleteList();
+  // List<BudgetDetails> completeList = getCompleteList();
 
   TextEditingController dateController = TextEditingController();
 
@@ -59,26 +59,26 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(MBHelloText, style: boldTextStyle(size: 16, color: gray)),
+                          Text(MBHelloText, style: TextStyle(fontSize: 16, color: Colors.black45)),
                           8.height,
                           Text.rich(
                             TextSpan(
                               text: MBNameText,
-                              style: boldTextStyle(size: 22),
-                              children: <TextSpan>[TextSpan(text: MBLastNameText, style: secondaryTextStyle(size: 22, color: Colors.blue))],
+                              style: TextStyle(fontSize: 22),
+                              children: <TextSpan>[TextSpan(text: MBLastNameText, style: TextStyle(fontSize:22, color: Color(0xff015a66), fontWeight: FontWeight.w600))],
                             ),
                           )
                         ],
                       ),
-                      ClipRRect(borderRadius: BorderRadius.all(Radius.circular(8)), child: Image.asset(mb_profile1, width: 50, height: 50)),
+                      ClipRRect(borderRadius: BorderRadius.all(Radius.circular(30)), child: Image.asset(mb_profile1, width: 50, height: 50)),
                     ],
                   ),
                   16.height,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(MBOverViewText, style: boldTextStyle(size: 16)),
-                      Text(MBInSightText, style: boldTextStyle(size: 16, color: gray.withOpacity(0.7))),
+                      Text(MBOverViewText, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                      Text(MBInSightText, style: TextStyle(fontSize: 16, color: gray.withOpacity(0.5), fontWeight: FontWeight.w500)),
                     ],
                   ),
                 ],
@@ -112,15 +112,15 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                             backgroundColor: i == index ? gray : white,
                             center: Text(data.progressPercentage, style: boldTextStyle(color: i == index ? white : appPrimaryColor)),
                             circularStrokeCap: CircularStrokeCap.round,
-                            progressColor: i == index ? white : Colors.purple,
+                            progressColor: i == index ? white : appPrimaryColor,
                           ),
                           8.width,
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(data.budgetType, style: boldTextStyle(size: 16, color: i == index ? white : Colors.blue)),
+                              Text(data.budgetType, style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
                               8.height,
-                              Text(data.totalCost, style: boldTextStyle(size: 16, color: i == index ? white : Colors.blue)),
+                              Text(data.totalCost, style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
                             ],
                           ),
                         ],
@@ -136,7 +136,7 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   8.height,
-                  Text(MBOperationText, style: boldTextStyle()),
+                  Text(MBOperationText, style: TextStyle()),
                   16.height,
                   Wrap(
                     spacing: 8.0,
@@ -149,16 +149,17 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                         BudgetDetails data = operationsList[index];
 
                         return Container(
-                          width: context.width() * 0.25,
-                          margin: EdgeInsets.all(8),
+                          width: context.width() * 0.26,
+                          margin: EdgeInsets.all(5),
                           padding: EdgeInsets.only(top: 20, bottom: 20),
-                          decoration: boxDecorationWithRoundedCorners(boxShadow: defaultBoxShadow(), backgroundColor: appStore.cardColor),
+                          decoration: boxDecorationWithRoundedCorners(borderRadius: BorderRadius.all(Radius.circular(16)),boxShadow: defaultBoxShadow(), backgroundColor: appStore.cardColor),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(data.icon, size: 24, color: appPrimaryColor),
-                              8.height,
-                              Text(data.budgetType, style: boldTextStyle(size: 16)),
+                              Icon(data.icon, size: 40, color: appPrimaryColor),
+                              10.height,
+                              20.width,
+                              Text(data.budgetType),
                             ],
                           ),
                         ).onTap(() {
@@ -179,30 +180,30 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                     ),
                   ).center(),
                   16.height,
-                  Text(MBCompleteText, style: boldTextStyle()),
-                  ListView.builder(
-                    itemCount: completeList.length,
-                    shrinkWrap: true,
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    scrollDirection: Axis.vertical,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-                      BudgetDetails data = completeList[index];
-                      return Container(
-                        decoration: boxDecorationWithRoundedCorners(boxShadow: defaultBoxShadow(), backgroundColor: appStore.cardColor),
-                        width: context.width(),
-                        padding: EdgeInsets.all(16),
-                        margin: EdgeInsets.symmetric(vertical: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(data.budgetType, style: boldTextStyle(size: 16)),
-                            Text(data.totalCost, style: secondaryTextStyle()),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                  // Text(MBCompleteText, style: boldTextStyle()),
+                  // ListView.builder(
+                  //   itemCount: completeList.length,
+                  //   shrinkWrap: true,
+                  //   padding: EdgeInsets.symmetric(vertical: 8),
+                  //   scrollDirection: Axis.vertical,
+                  //   physics: NeverScrollableScrollPhysics(),
+                  //   itemBuilder: (BuildContext context, int index) {
+                  //     BudgetDetails data = completeList[index];
+                  //     return Container(
+                  //       decoration: boxDecorationWithRoundedCorners(boxShadow: defaultBoxShadow(), backgroundColor: appStore.cardColor),
+                  //       width: context.width(),
+                  //       padding: EdgeInsets.all(16),
+                  //       margin: EdgeInsets.symmetric(vertical: 8),
+                  //       child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         children: [
+                  //           Text(data.budgetType, style: boldTextStyle(size: 12)),
+                  //           Text(data.totalCost, style: secondaryTextStyle()),
+                  //         ],
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
                 ],
               ).paddingOnly(right: 16, left: 16),
             ],

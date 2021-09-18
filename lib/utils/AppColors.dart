@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-Color appPrimaryColor = Color(0xFF2979ff);
+// Color appPrimaryColor = Color(0xff2979ff);
+Color appPrimaryColor = Color(0xff015a66);
 Color iconSecondaryColor = Color(0xFF9E9E9E);
-Color appBarBackgroundColor = Color(0xFFFFFFFF);
+Color appBarBackgroundColor = Color(0xFF474747);
 const scaffoldColorDark = Color(0xFF121212);
 const scaffoldSecondaryDark = Color(0xFF1E1E1E);
 
