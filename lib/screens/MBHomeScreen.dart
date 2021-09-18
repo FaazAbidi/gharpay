@@ -99,26 +99,27 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                         boxShadow: defaultBoxShadow(),
                       ),
                       alignment: Alignment.center,
-                      width: context.width() * 0.45,
+                      width: context.width() * 0.6,
                       margin: EdgeInsets.all(8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircularPercentIndicator(
-                            radius: 60.0,
-                            lineWidth: 2.0,
-                            animation: true,
-                            percent: data.percentage,
-                            backgroundColor: i == index ? gray : white,
-                            center: Text(data.progressPercentage, style: boldTextStyle(color: i == index ? white : appPrimaryColor)),
-                            circularStrokeCap: CircularStrokeCap.round,
-                            progressColor: i == index ? white : appPrimaryColor,
-                          ),
-                          8.width,
+                          // CircularPercentIndicator(
+                          //   radius: 60.0,
+                          //   lineWidth: 2.0,
+                          //   animation: true,
+                          //   percent: data.percentage,
+                          //   backgroundColor: i == index ? gray : white,
+                          //   center: Text(data.progressPercentage, style: boldTextStyle(color: i == index ? white : appPrimaryColor)),
+                          //   circularStrokeCap: CircularStrokeCap.round,
+                          //   progressColor: i == index ? white : appPrimaryColor,
+                          // ),
+                          Icon(IconData(60979, fontFamily: 'MaterialIcons'), size: 70, color: appPrimaryColor),
+                          30.width,
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(data.budgetType, style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
+                              Text("HRA\nBalance", style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
                               8.height,
                               Text(data.totalCost, style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
                             ],
@@ -180,7 +181,8 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                     ),
                   ).center(),
                   16.height,
-                  // Text(MBCompleteText, style: boldTextStyle()),
+                  
+                  Center(child: Text("Powered By JS Bank", style: boldTextStyle())),
                   // ListView.builder(
                   //   itemCount: completeList.length,
                   //   shrinkWrap: true,
@@ -206,6 +208,7 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                   // ),
                 ],
               ).paddingOnly(right: 16, left: 16),
+
             ],
           ),
         ),

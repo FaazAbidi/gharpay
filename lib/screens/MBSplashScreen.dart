@@ -35,7 +35,9 @@ class MBSplashScreenState extends State<MBSplashScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [Image.asset(mb_bank_logo, height: 300, width: 300).cornerRadiusWithClipRRect(16), 16.height, Text('Bank Finance and \n Wallet UI Kit', textAlign: TextAlign.center, style: boldTextStyle())],
+        children: [Image.asset("images/logo.png", height: 200, width: 200).cornerRadiusWithClipRRect(16), 16.height,
+          // Text('Paisa lay', textAlign: TextAlign.center, style: boldTextStyle())
+        ],
       ).center(),
     );
   }

@@ -40,10 +40,10 @@ class MBWalkThroughScreenState extends State<MBWalkThroughScreen> with AfterLayo
         children: [
           SvgPicture.asset("vectors/security.svg", height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
           32.height,
-          Text('Encrypted', style: boldTextStyle(size: 24)),
+          Text('Safe & Secure', style: boldTextStyle(size: 24)),
           16.height,
           Text(
-            'Our new encrypted process makes \n it more secure between you \n and your bank',
+            'Our new encrypted process and \n security procedures makes it more \n secure between you and your banks',
             textAlign: TextAlign.center,
             style: secondaryTextStyle(size: 16),
           ),
@@ -53,10 +53,10 @@ class MBWalkThroughScreenState extends State<MBWalkThroughScreen> with AfterLayo
         children: [
           SvgPicture.asset("vectors/remotePayments.svg", height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
           32.height,
-          Text('Easy To Use', style: boldTextStyle(size: 24)),
+          Text('Card Payments', style: boldTextStyle(size: 24)),
           16.height,
           Text(
-            'Manage your bank account,\n financial transaction. Its all \n easy like never before',
+            'Send money to HFA accounts \n with easy credit/debit card transaction. \n Simple like never before',
             textAlign: TextAlign.center,
             style: secondaryTextStyle(size: 16),
           ),
@@ -66,19 +66,19 @@ class MBWalkThroughScreenState extends State<MBWalkThroughScreen> with AfterLayo
         children: [
           SvgPicture.asset("vectors/anywhere.svg", height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
           32.height,
-          Text('Fast & Secure', style: boldTextStyle(size: 24)),
+          Text('Anywhere Anytime', style: boldTextStyle(size: 24)),
           16.height,
-          Text('Don\'t Worry about 3rd party\n Hacks. It is fast and secure', textAlign: TextAlign.center, style: secondaryTextStyle(size: 16)),
+          Text('Don\'t Worry about long distances. \n Your loved ones will always be near. \n Make payments from anywhere anytime.', textAlign: TextAlign.center, style: secondaryTextStyle(size: 16)),
         ],
       ).paddingOnly(top: 60),
       Column(
         children: [
-          Image.asset(mb_bank_logo, height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
+          SvgPicture.asset("vectors/launch.svg", height: 200, fit: BoxFit.cover).paddingOnly(top: 40),
           32.height,
-          Text('Watch Tutorial', style: boldTextStyle(size: 24)),
+          Text('Launching Now', style: boldTextStyle(size: 24)),
           16.height,
           Text(
-            'if you are new on this and need \n help, watch this short tutorial clip to \n get started.',
+            'The wait is over. \n Sign up or login to experience \n future of easy and fast international \n payments.',
             textAlign: TextAlign.center,
             style: secondaryTextStyle(size: 16),
           ),
