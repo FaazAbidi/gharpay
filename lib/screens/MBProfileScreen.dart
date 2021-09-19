@@ -6,6 +6,9 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../backendApiSimulation.dart';
+import 'MBSignInScreen.dart';
+
 class MBProfileScreen extends StatefulWidget {
   @override
   MBProfileScreenState createState() => MBProfileScreenState();
@@ -59,10 +62,26 @@ class MBProfileScreenState extends State<MBProfileScreen> {
     if (mounted) super.setState(fn);
   }
 
+  getField(String heading,String value){
+    return value!=null ? Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(heading, style: boldTextStyle(size: 18))
+            .paddingOnly(left: 16),
+        Text(value, style: TextStyle(fontSize: 13))
+            .paddingOnly(left: 16),
+        10.height,
+        Divider(),
+      ],
+    ) : Container();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,26 +93,13 @@ class MBProfileScreenState extends State<MBProfileScreen> {
               16.height,
               Row(
                 children: [
-                  CircularPercentIndicator(
-                    radius: 90,
-                    lineWidth: 4.0,
-                    percent: 0.6,
-                    progressColor: appPrimaryColor,
-                    center: Image.asset(mb_profile1,
-                            height: 82, width: 82, fit: BoxFit.cover)
-                        .cornerRadiusWithClipRRect(100),
-                  ),
+                  Container(width:120,child: Image.asset(User.instance.image)),
                   16.width,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Samuel', style: boldTextStyle(size: 18)),
-                      6.height,
-                      Text('FlatCher',
-                          style:
-                              boldTextStyle(size: 18, color: appPrimaryColor)),
-                      6.height,
-                      Text('Account Type : Overseas',
+                      Text(User.instance.name, style: boldTextStyle(size: 18)),
+                      Text('Account Type : ${User.instance.userType==UserType.sender ? "Sender" : "Reciver"}',
                           overflow: TextOverflow.visible,
                           maxLines: 1,
                           style: primaryTextStyle()),
@@ -101,53 +107,12 @@ class MBProfileScreenState extends State<MBProfileScreen> {
                   ).expand()
                 ],
               ),
-              16.height,
-              Text('Name', style: boldTextStyle()),
               6.height,
-              textFieldWidget(
-                hintText: 'Enter Name',
-                textFieldType: TextFieldType.NAME,
-                focusNode: focusNodeName,
-                nextFocusNode: focusNodeDob,
-                controller: nameController,
-              ),
+              getField("Phone Number", User.instance.phone),
               6.height,
-              Text('Date of Birth', style: boldTextStyle()),
+              getField("Email", User.instance.email),
               6.height,
-              textFieldWidget(
-                hintText: 'Enter Date of birth',
-                textFieldType: TextFieldType.OTHER,
-                focusNode: focusNodeDob,
-                nextFocusNode: focusNodePassword,
-                controller: dobController,
-                icon: Icon(
-                  Icons.date_range,
-                  size: 18,
-                  color: appPrimaryColor,
-                ).onTap(
-                  () async {
-                    await selectDate(context);
-                    dobController.text = _date.day.toString();
-                    dobController.text = _date.month.toString();
-                    dobController.text = _date.year.toString();
-                    value = dobController.text = _date.day.toString() +
-                        "/" +
-                        _date.month.toString() +
-                        "/" +
-                        _date.year.toString();
-                    setState(() {});
-                  },
-                ),
-              ),
-              6.height,
-              Text('Password', style: boldTextStyle()),
-              6.height,
-              textFieldWidget(
-                hintText: 'Enter Password',
-                textFieldType: TextFieldType.PASSWORD,
-                focusNode: focusNodePassword,
-                controller: passWordController,
-              ),
+              getField("Cnic", User.instance.cnic),
               // Text('Mobile No.', style: boldTextStyle()),
               // 6.height,
               // textFieldWidget(
@@ -156,31 +121,20 @@ class MBProfileScreenState extends State<MBProfileScreen> {
               //   focusNode: focusNodeMobile,
               //   controller: mobileController,
               // ),
-              Text('Mobile No.', style: boldTextStyle()),
-              6.height,
-              textFieldWidget(
-                hintText: 'Enter Mobile No.',
-                textFieldType: TextFieldType.PHONE,
-                focusNode: focusNodeMobile,
-                controller: mobileController,
-              ),
               32.height,
               AppButton(
                 width: context.width(),
                 color: appPrimaryColor,
-                elevation: 12,
-                onTap: () {},
+                elevation: 10,
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => MBSignInScreen()),
+                          (Route<dynamic> route) => false);
+                },
                 child:
-                Text('Update Information', style: boldTextStyle(color: Colors.white)),
-              ),
-              32.height,
-              AppButton(
-                width: context.width(),
-                color: appPrimaryColor,
-                elevation: 12,
-                onTap: () {},
-                child:
-                    Text('Sign Out', style: boldTextStyle(color: Colors.white)),
+                    Text('Logout', style: boldTextStyle(color: Colors.white)),
               )
             ],
           ).paddingOnly(left: 16, right: 16, bottom: 16),
