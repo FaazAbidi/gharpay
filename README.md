@@ -1,6 +1,6 @@
 # gharpay
 
-Send remitances to Pakistan with ease.
+Send payments to Pakistan with ease.
 ## Full Demo, Presentation and Relevant Files (apk,screenshots) can be found [here](https://drive.google.com/drive/folders/1yn54CsHUAQ_K9cf9mlJZARXECx0z-guv?usp=sharing)
 
 
