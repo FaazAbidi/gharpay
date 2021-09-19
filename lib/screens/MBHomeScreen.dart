@@ -31,7 +31,7 @@ class MBHomeScreenState extends State<MBHomeScreen> {
   List<BudgetDetails> operationsList = getOperationsList();
   List<BudgetDetails> operationsList1 = getOperationsList1();
   List<BudgetDetails> operationsList2 = getOperationsList2();
-  bool HRAselected = true;
+  bool HRAselected = User.instance.userType==UserType.receiver ? true : false;
 
   TextEditingController hraController = TextEditingController();
   // List<BudgetDetails> completeList = getCompleteList();
@@ -114,92 +114,96 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                   ],
                 ),
               ),
-              Column(
+              User.instance.userType==UserType.receiver ? Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
                     children: [
-                      Text(MBOverViewText,
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500)),
-                      Text(MBInSightText,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: gray.withOpacity(0.5),
-                              fontWeight: FontWeight.w500)),
-                    ],
-                  ),
-                ],
-              ).paddingAll(16),
-              Container(
-                height: 150,
-                child: ListView.builder(
-                  itemCount: 2,
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(8),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      decoration: boxDecorationWithRoundedCorners(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                        backgroundColor:
-                            i == index ? appPrimaryColor : appStore.cardColor,
-                        boxShadow: defaultBoxShadow(),
-                      ),
-                      alignment: Alignment.center,
-                      width: context.width() * 0.55,
-                      margin: EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
-                              index == 0
-                                  ? Icons.public
-                                  : Icons.account_balance_wallet,
-                              size: 50,
-                              color: i == index ? white : Colors.black),
-                          15.width,
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                  index == 0 ? "HRA Balance" : "Wallet Balance",
-                                  style: TextStyle(
-                                      color:
-                                          i == index ? white : Colors.black)),
-                              6.height,
-                              Text(
-                                  index == 0
-                                      ? User.instance.hraWalletBalance
-                                              .toString() +
-                                          " Rs"
-                                      : User.instance.jsWalletBalance
-                                              .toString() +
-                                          " Rs",
-                                  style: boldTextStyle(
-                                      size: 16,
-                                      color:
-                                          i == index ? white : Colors.black)),
-                            ],
-                          ),
+                          Text(MBOverViewText,
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500)),
+                          Text(MBInSightText,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: gray.withOpacity(0.5),
+                                  fontWeight: FontWeight.w500)),
                         ],
                       ),
-                    ).onTap(() {
-                      i = index;
-                      setState(() {
-                        if (i == 0) {
-                          HRAselected = true;
-                          print("true");
-                        } else {
-                          HRAselected = false;
-                          print("false");
-                        }
-                      });
-                    });
-                  },
-                ),
-              ),
+                    ],
+                  ).paddingAll(16),
+                  Container(
+                    height: 150,
+                    child: ListView.builder(
+                      itemCount: 2,
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(8),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          decoration: boxDecorationWithRoundedCorners(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                            backgroundColor:
+                            i == index ? appPrimaryColor : appStore.cardColor,
+                            boxShadow: defaultBoxShadow(),
+                          ),
+                          alignment: Alignment.center,
+                          width: context.width() * 0.55,
+                          margin: EdgeInsets.all(8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                  index == 0
+                                      ? Icons.public
+                                      : Icons.account_balance_wallet,
+                                  size: 50,
+                                  color: i == index ? white : Colors.black),
+                              15.width,
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      index == 0 ? "HRA Balance" : "Wallet Balance",
+                                      style: TextStyle(
+                                          color:
+                                          i == index ? white : Colors.black)),
+                                  6.height,
+                                  Text(
+                                      index == 0
+                                          ? User.instance.hraWalletBalance
+                                          .toString() +
+                                          " Rs"
+                                          : User.instance.jsWalletBalance
+                                          .toString() +
+                                          " Rs",
+                                      style: boldTextStyle(
+                                          size: 16,
+                                          color:
+                                          i == index ? white : Colors.black)),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ).onTap(() {
+                          i = index;
+                          setState(() {
+                            if (i == 0) {
+                              HRAselected = true;
+                              print("true");
+                            } else {
+                              HRAselected = false;
+                              print("false");
+                            }
+                          });
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ): Container(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
