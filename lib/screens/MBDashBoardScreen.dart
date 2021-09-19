@@ -46,7 +46,7 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 duration: Duration(milliseconds: 800),
                 margin: EdgeInsets.only(left: 12),
                 padding: EdgeInsets.all(8),
-                child: Icon(Icons.home),
+                child: Icon(Icons.home, color: appPrimaryColor),
               ),
               label: MBTab1Text,
               activeIcon: AnimatedContainer(
@@ -56,8 +56,8 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 padding: EdgeInsets.all(8),
                 child: Row(
                   children: [
-                    Icon(Icons.home, color: appPrimaryColor, size: 20),
-                    Text(MBTab1Text, style: boldTextStyle(color: appPrimaryColor, size: 11)).center().expand(),
+                    Icon(Icons.home, color: Colors.black, size: 20),
+                    Text(MBTab1Text, style: boldTextStyle(color: Colors.black, size: 11)).center().expand(),
                   ],
                 ),
               ),
@@ -67,7 +67,7 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 duration: Duration(milliseconds: 800),
                 margin: EdgeInsets.only(left: 12),
                 padding: EdgeInsets.all(8),
-                child: Icon(Icons.business),
+                child: Icon(Icons.credit_card_outlined, color: appPrimaryColor),
               ),
               label: MBTab2Text,
               activeIcon: AnimatedContainer(
@@ -77,8 +77,8 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 padding: EdgeInsets.all(8),
                 child: Row(
                   children: [
-                    Icon(Icons.business, color: appPrimaryColor, size: 20),
-                    Text(MBTab2Text, style: boldTextStyle(color: appPrimaryColor, size: 11)).center().expand(),
+                    Icon(Icons.credit_card_outlined, color: Colors.black, size: 20),
+                    Text(MBTab2Text, style: boldTextStyle(color: Colors.black, size: 11)).center().expand(),
                   ],
                 ),
               ),
@@ -88,7 +88,7 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 duration: Duration(milliseconds: 800),
                 margin: EdgeInsets.only(left: 12),
                 padding: EdgeInsets.all(8),
-                child: Icon(Icons.settings),
+                child: Icon(Icons.settings, color: appPrimaryColor),
               ),
               label: MBTab3Text,
               activeIcon: AnimatedContainer(
@@ -98,14 +98,14 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 padding: EdgeInsets.all(8),
                 child: Row(
                   children: [
-                    Icon(Icons.settings, color: appPrimaryColor, size: 20),
-                    Text(MBTab3Text, style: boldTextStyle(color: appPrimaryColor, size: 11)).center().expand(),
+                    Icon(Icons.settings, color: Colors.black, size: 20),
+                    Text(MBTab3Text, style: boldTextStyle(color: Colors.black, size: 11)).center().expand(),
                   ],
                 ),
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.person, color: appPrimaryColor),
               label: MBTab2Text,
               activeIcon: AnimatedContainer(
                 decoration: boxDecorationWithRoundedCorners(backgroundColor: Colors.white),
@@ -114,8 +114,8 @@ class MBDashBoardScreenState extends State<MBDashBoardScreen> {
                 padding: EdgeInsets.all(8),
                 child: Row(
                   children: [
-                    Icon(Icons.person, color: appPrimaryColor, size: 20),
-                    Text(MBTab4Text, style: boldTextStyle(color: appPrimaryColor, size: 11)).center().expand(),
+                    Icon(Icons.person, color: Colors.black, size: 20),
+                    Text(MBTab4Text, style: boldTextStyle(color: Colors.black, size: 11)).center().expand(),
                   ],
                 ),
               ),

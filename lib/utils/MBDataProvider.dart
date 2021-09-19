@@ -6,8 +6,8 @@ import 'package:gharpay/utils/MBImages.dart';
 
 List<BudgetDetails> getBudgetDetailList() {
   List<BudgetDetails> budgetList = [];
-  budgetList.add(BudgetDetails(percentage: 0.9, progressPercentage: '90%', budgetType: 'Budget', totalCost: '\$15,000'));
-  budgetList.add(BudgetDetails(percentage: 0.7, progressPercentage: '70%', budgetType: 'Expenses', totalCost: '\$24,000'));
+  budgetList.add(BudgetDetails(percentage: 0.9, progressPercentage: '90%',icon: Icons.monetization_on_outlined, budgetType: 'HRA\nBalance', totalCost: '\$15,000'));
+  budgetList.add(BudgetDetails(percentage: 0.7, progressPercentage: '70%',icon: Icons.wallet_membership_rounded, budgetType: 'Wallet\nBalance', totalCost: '\$24,000'));
   return budgetList;
 }
 
@@ -34,6 +34,28 @@ List<BudgetDetails> getOperationsList() {
   operationsList.add(BudgetDetails(budgetType: 'Budget', icon: Entypo.line_graph));
   return operationsList;
 }
+
+List<BudgetDetails> getOperationsList1() {
+  List<BudgetDetails> operationsList1 = [];
+  operationsList1.add(BudgetDetails(budgetType: 'HRA to Wallet', icon: AntDesign.swap));
+  return operationsList1;
+}
+List<BudgetDetails> getOperationsList2() {
+  List<BudgetDetails> operationsList2 = [];
+  operationsList2.add(BudgetDetails(budgetType: 'Transfer', icon: AntDesign.swap));
+  operationsList2.add(BudgetDetails(budgetType: 'Withdraw', icon: Foundation.ticket));
+  // operationsList2.add(BudgetDetails(budgetType: 'Deposit', icon: Entypo.documents));
+  // operationsList2.add(BudgetDetails(budgetType: 'My Cards', icon: EvilIcons.credit_card));
+  // operationsList2.add(BudgetDetails(budgetType: 'Analytics', icon: Feather.bar_chart_2));
+  operationsList2.add(BudgetDetails(budgetType: 'Transactions', icon: Icons.payment_rounded));
+  return operationsList2;
+}
+
+
+
+
+
+
 
 List<BudgetDetails> getSendMoneyList() {
   List<BudgetDetails> sendMoneyList = [];

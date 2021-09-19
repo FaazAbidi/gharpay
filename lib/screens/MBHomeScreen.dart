@@ -22,6 +22,9 @@ class MBHomeScreen extends StatefulWidget {
 class MBHomeScreenState extends State<MBHomeScreen> {
   List<BudgetDetails> budgetDetailList = getBudgetDetailList();
   List<BudgetDetails> operationsList = getOperationsList();
+  List<BudgetDetails> operationsList1 = getOperationsList1();
+  List<BudgetDetails> operationsList2 = getOperationsList2();
+  bool HRAselected=true;
   // List<BudgetDetails> completeList = getCompleteList();
 
   TextEditingController dateController = TextEditingController();
@@ -47,9 +50,13 @@ class MBHomeScreenState extends State<MBHomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        // appBar: AppBar(
+        //   title: const Text('GharPAY'),
+        //   backgroundColor: appPrimaryColor,
+        // ),
         body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 children: [
@@ -59,8 +66,30 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(MBHelloText, style: TextStyle(fontSize: 16, color: Colors.black45)),
+                          // Text(MBHelloText, style: TextStyle(fontSize: 16, color: Colors.black45)),
                           8.height,
+                          Text.rich(
+                            TextSpan(
+                              text: "Ghar",
+                              style: TextStyle(fontSize: 40),
+                              children: <TextSpan>[TextSpan(text: "PAY", style: TextStyle(fontSize:40, color: Color(0xff015a66), fontWeight: FontWeight.w600))],
+                            ),
+                          )
+                        ],
+                      ),
+                      16.height,
+                      ClipRRect(borderRadius: BorderRadius.all(Radius.circular(30)), child: Image.asset(mb_profile1, width: 50, height: 50)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          8.height,
+                          Text(MBHelloText, style: TextStyle(fontSize: 16, color: Colors.black45)),
+
                           Text.rich(
                             TextSpan(
                               text: MBNameText,
@@ -70,7 +99,7 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                           )
                         ],
                       ),
-                      ClipRRect(borderRadius: BorderRadius.all(Radius.circular(30)), child: Image.asset(mb_profile1, width: 50, height: 50)),
+                      // ClipRRect(borderRadius: BorderRadius.all(Radius.circular(30)), child: Image.asset(mb_profile1, width: 50, height: 50)),
                     ],
                   ),
                   16.height,
@@ -99,27 +128,18 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                         boxShadow: defaultBoxShadow(),
                       ),
                       alignment: Alignment.center,
-                      width: context.width() * 0.6,
+                      width: context.width() * 0.44,
                       margin: EdgeInsets.all(8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // CircularPercentIndicator(
-                          //   radius: 60.0,
-                          //   lineWidth: 2.0,
-                          //   animation: true,
-                          //   percent: data.percentage,
-                          //   backgroundColor: i == index ? gray : white,
-                          //   center: Text(data.progressPercentage, style: boldTextStyle(color: i == index ? white : appPrimaryColor)),
-                          //   circularStrokeCap: CircularStrokeCap.round,
-                          //   progressColor: i == index ? white : appPrimaryColor,
-                          // ),
-                          Icon(IconData(60979, fontFamily: 'MaterialIcons'), size: 70, color: appPrimaryColor),
-                          30.width,
+
+                          Icon(data.icon, size: 45, color: i == index ? white : Colors.black),
+                          10.width,
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("HRA\nBalance", style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
+                              Text(data.budgetType, style: TextStyle(color: i == index ? white : Colors.black)),
                               8.height,
                               Text(data.totalCost, style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
                             ],
@@ -128,7 +148,15 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                       ),
                     ).onTap(() {
                       i = index;
-                      setState(() {});
+                      setState(() {
+                        if (i==0){
+                          HRAselected=true;
+                          print("true");
+                        }else{
+                          HRAselected=false;
+                          print("false");
+                        }
+                      });
                     });
                   },
                 ),
@@ -145,12 +173,17 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                     alignment: WrapAlignment.spaceEvenly,
                     runAlignment: WrapAlignment.spaceEvenly,
                     children: List.generate(
-                      operationsList.length,
+                      HRAselected? operationsList1.length : operationsList2.length,
                       (index) {
-                        BudgetDetails data = operationsList[index];
-
+                        BudgetDetails data;
+                        if (HRAselected==true){
+                          data = operationsList1[index];
+                        }else {
+                          data = operationsList2[index];
+                        }
+                        // BudgetDetails data = operationsList1[index];
                         return Container(
-                          width: context.width() * 0.26,
+                          width: HRAselected? context.width() * 1 : context.width() * 0.26,
                           margin: EdgeInsets.all(5),
                           padding: EdgeInsets.only(top: 20, bottom: 20),
                           decoration: boxDecorationWithRoundedCorners(borderRadius: BorderRadius.all(Radius.circular(16)),boxShadow: defaultBoxShadow(), backgroundColor: appStore.cardColor),
@@ -160,7 +193,7 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                               Icon(data.icon, size: 40, color: appPrimaryColor),
                               10.height,
                               20.width,
-                              Text(data.budgetType),
+                              Text(data.budgetType, textAlign: TextAlign.center),
                             ],
                           ),
                         ).onTap(() {
@@ -180,34 +213,20 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                       },
                     ),
                   ).center(),
-                  16.height,
-                  
-                  Center(child: Text("Powered By JS Bank", style: boldTextStyle())),
-                  // ListView.builder(
-                  //   itemCount: completeList.length,
-                  //   shrinkWrap: true,
-                  //   padding: EdgeInsets.symmetric(vertical: 8),
-                  //   scrollDirection: Axis.vertical,
-                  //   physics: NeverScrollableScrollPhysics(),
-                  //   itemBuilder: (BuildContext context, int index) {
-                  //     BudgetDetails data = completeList[index];
-                  //     return Container(
-                  //       decoration: boxDecorationWithRoundedCorners(boxShadow: defaultBoxShadow(), backgroundColor: appStore.cardColor),
-                  //       width: context.width(),
-                  //       padding: EdgeInsets.all(16),
-                  //       margin: EdgeInsets.symmetric(vertical: 8),
-                  //       child: Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //         children: [
-                  //           Text(data.budgetType, style: boldTextStyle(size: 12)),
-                  //           Text(data.totalCost, style: secondaryTextStyle()),
-                  //         ],
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
+                  0.height,
+
                 ],
               ).paddingOnly(right: 16, left: 16),
+
+              145.height,
+              Column(
+                // verticalDirection: VerticalDirection.down,
+                // mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(child: Text("powered by JS Bank", style: TextStyle(color: Colors.grey, fontSize: 12.0, fontWeight: FontWeight.bold))),
+                      // Image.asset("images/logo.png", height: 200, width: 200).cornerRadiusWithClipRRect(16),)
+                ],
+              )
 
             ],
           ),
