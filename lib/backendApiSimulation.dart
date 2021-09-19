@@ -90,8 +90,8 @@ class User {
 }
 
 class NetworkProvider {
-  static Future<void> delay() async {
-    await Future.delayed(Duration(seconds: 4));
+  static Future<void> delay({int sec=4}) async {
+    await Future.delayed(Duration(seconds: sec));
   }
 
   static Future<void> login(String email, String password) async {
@@ -106,6 +106,19 @@ class NetworkProvider {
     User.instance.email = tempUser.email;
     User.instance=tempUser;
   }
+
+  static Future<void> transferHRAtoWallet (String hra) async {
+    await delay(sec: 2);
+    try {
+      User.instance.hraWalletBalance -= double.parse(hra);
+      User.instance.jsWalletBalance += double.parse(hra);
+      return true;
+    } catch (e) {
+      return false;
+    }
+
+  }
+
 
   static User _getCurrentUser() {
     return userDatabase

@@ -5,6 +5,7 @@ import 'package:gharpay/backendApiSimulation.dart';
 import 'package:gharpay/models/MBModel.dart';
 import 'package:gharpay/utils/MBDataProvider.dart';
 import 'package:gharpay/utils/AppColors.dart';
+import 'package:gharpay/utils/MBWidgets.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import '../utils/AppColors.dart';
@@ -21,6 +22,10 @@ class MBSendMoneyScreenState extends State<MBSendMoneyScreen> {
   int i = 0;
   int j = 1;
   int K = 3;
+
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController cnicController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
   @override
   void initState() {
@@ -47,23 +52,22 @@ class MBSendMoneyScreenState extends State<MBSendMoneyScreen> {
               title: "Add a new payee",
               content: Column(
                 children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.account_circle),
-                      labelText: 'Phone',
-                    ),
+                  textFieldWidget(
+                    hintText: 'Phone',
+                    controller: phoneController,
+                    textFieldType: TextFieldType.PHONE,
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
-                      labelText: 'Cnic #',
-                    ),
+                  10.height,
+                  textFieldWidget(
+                    hintText: 'CNIC',
+                    controller: cnicController,
+                    textFieldType: TextFieldType.PHONE,
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.account_balance_wallet),
-                      labelText: 'Name',
-                    ),
+                  10.height,
+                  textFieldWidget(
+                    hintText: 'Name',
+                    controller: nameController,
+                    textFieldType: TextFieldType.NAME,
                   ),
                 ],
               ),
