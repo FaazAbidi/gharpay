@@ -158,7 +158,7 @@ final List<User> userDatabase = [
       jsWalletBalance: 5500,
       hraWalletBalance: 16580,
       phone: "0333-XXXXX66",
-      image: 'image/Asad Raza.gif',
+      image: 'images/Asad Raza.gif',
       transactions: [
         Transaction(
             receiverUserId: "0001",
@@ -273,13 +273,13 @@ final List<User> userDatabase = [
             name: "Asad Raza",
             cnic: "42201-XXXXXXX-7",
             mobileNo: "0333-XXXXX66",
-            image: "image/Asad Raza.gif"
+            image: "images/Asad Raza.gif"
         ),
         Payee(
             name: "Hussain Abbas",
             cnic: "42000-XXXXXXX-9",
             mobileNo: "0334-XXXXX80",
-            image: "image/Hussain Abbas.gif"
+            image: "images/Hussain Abbas.gif"
         ),
         Payee(
             name: "Amma",
@@ -354,13 +354,13 @@ final List<User> userDatabase = [
             name: "Asad Raza",
             cnic: "42201-XXXXXXX-7",
             mobileNo: "0333-XXXXX66",
-            image: "image/Asad Raza.gif"
+            image: "images/Asad Raza.gif"
         ),
         Payee(
             name: "Hussain Abbas",
             cnic: "42000-XXXXXXX-9",
             mobileNo: "0334-XXXXX80",
-            image: "image/Hussain Abbas.gif"
+            image: "images/Hussain Abbas.gif"
         ),
         Payee(
           name: "Amma",
