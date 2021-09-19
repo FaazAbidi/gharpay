@@ -13,6 +13,7 @@ import 'package:gharpay/main.dart';
 import 'package:gharpay/utils/AppColors.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:gharpay/screens/MBForexCalculator.dart';
 
 import '../backendApiSimulation.dart';
 import '../utils/AppColors.dart';
@@ -26,7 +27,7 @@ class MBHomeScreenState extends State<MBHomeScreen> {
   List<BudgetDetails> operationsList = getOperationsList();
   List<BudgetDetails> operationsList1 = getOperationsList1();
   List<BudgetDetails> operationsList2 = getOperationsList2();
-  bool HRAselected=true;
+  bool HRAselected = true;
   // List<BudgetDetails> completeList = getCompleteList();
 
   TextEditingController dateController = TextEditingController();
@@ -76,13 +77,23 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             8.height,
-                            Text(MBHelloText, style: TextStyle(fontSize: 17, color: Colors.black45)),
-
+                            Text(MBHelloText,
+                                style: TextStyle(
+                                    fontSize: 17, color: Colors.black45)),
                             Text.rich(
                               TextSpan(
-                                text: User.instance.name.split(new RegExp('\\s+'))[0],
+                                text: User.instance.name
+                                    .split(new RegExp('\\s+'))[0],
                                 style: TextStyle(fontSize: 25),
-                                children: <TextSpan>[TextSpan(text: User.instance.name.split(new RegExp('\\s+'))[1], style: TextStyle(fontSize:23, color: appPrimaryColor, fontWeight: FontWeight.w600))],
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: User.instance.name
+                                          .split(new RegExp('\\s+'))[1],
+                                      style: TextStyle(
+                                          fontSize: 23,
+                                          color: appPrimaryColor,
+                                          fontWeight: FontWeight.w600))
+                                ],
                               ),
                             )
                           ],
@@ -90,7 +101,10 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                       ],
                     ),
                     16.height,
-                    ClipRRect(borderRadius: BorderRadius.all(Radius.circular(30)), child: Image.asset(User.instance.image, width: 100, height: 100)),
+                    ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        child: Image.asset(User.instance.image,
+                            width: 100, height: 100)),
                   ],
                 ),
               ),
@@ -99,8 +113,14 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(MBOverViewText, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                      Text(MBInSightText, style: TextStyle(fontSize: 16, color: gray.withOpacity(0.5), fontWeight: FontWeight.w500)),
+                      Text(MBOverViewText,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500)),
+                      Text(MBInSightText,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: gray.withOpacity(0.5),
+                              fontWeight: FontWeight.w500)),
                     ],
                   ),
                 ],
@@ -116,7 +136,8 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                     return Container(
                       decoration: boxDecorationWithRoundedCorners(
                         borderRadius: BorderRadius.all(Radius.circular(16)),
-                        backgroundColor: i == index ? appPrimaryColor : appStore.cardColor,
+                        backgroundColor:
+                            i == index ? appPrimaryColor : appStore.cardColor,
                         boxShadow: defaultBoxShadow(),
                       ),
                       alignment: Alignment.center,
@@ -125,16 +146,37 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-
-                          Icon(index==0 ? Icons.public : Icons.account_balance_wallet, size: 50, color: i == index ? white : Colors.black),
+                          Icon(
+                              index == 0
+                                  ? Icons.public
+                                  : Icons.account_balance_wallet,
+                              size: 50,
+                              color: i == index ? white : Colors.black),
                           15.width,
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(index==0 ? "HRA Balance" : "Wallet Balance", style: TextStyle(color: i == index ? white : Colors.black)),
-                              Text("Rs.", style: TextStyle(fontSize: 14, color: i == index ? white : Colors.black)),
-                              Text(index==0 ? User.instance.hraWalletBalance.toStringAsFixed(1) : User.instance.jsWalletBalance.toStringAsFixed(1), style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
+                              Text(
+                                  index == 0 ? "HRA Balance" : "Wallet Balance",
+                                  style: TextStyle(
+                                      color:
+                                          i == index ? white : Colors.black)),
+                              Text("Rs.",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color:
+                                          i == index ? white : Colors.black)),
+                              Text(
+                                  index == 0
+                                      ? User.instance.hraWalletBalance
+                                          .toStringAsFixed(1)
+                                      : User.instance.jsWalletBalance
+                                          .toStringAsFixed(1),
+                                  style: boldTextStyle(
+                                      size: 16,
+                                      color:
+                                          i == index ? white : Colors.black)),
                             ],
                           ),
                         ],
@@ -142,11 +184,11 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                     ).onTap(() {
                       i = index;
                       setState(() {
-                        if (i==0){
-                          HRAselected=true;
+                        if (i == 0) {
+                          HRAselected = true;
                           print("true");
-                        }else{
-                          HRAselected=false;
+                        } else {
+                          HRAselected = false;
                           print("false");
                         }
                       });
@@ -166,27 +208,37 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                     alignment: WrapAlignment.spaceEvenly,
                     runAlignment: WrapAlignment.spaceEvenly,
                     children: List.generate(
-                      HRAselected? operationsList1.length : operationsList2.length,
+                      HRAselected
+                          ? operationsList1.length
+                          : operationsList2.length,
                       (index) {
                         BudgetDetails data;
-                        if (HRAselected==true){
+                        if (HRAselected == true) {
                           data = operationsList1[index];
-                        }else {
+                        } else {
                           data = operationsList2[index];
                         }
                         // BudgetDetails data = operationsList1[index];
                         return Container(
-                          width: HRAselected? context.width() * 1 : context.width() * 0.28,
+                          width: HRAselected
+                              ? context.width() * 1
+                              : context.width() * 0.28,
                           margin: EdgeInsets.all(1),
                           padding: EdgeInsets.only(top: 20, bottom: 20),
-                          decoration: boxDecorationWithRoundedCorners(borderRadius: BorderRadius.all(Radius.circular(16)),boxShadow: defaultBoxShadow(), backgroundColor: appStore.cardColor),
+                          decoration: boxDecorationWithRoundedCorners(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
+                              boxShadow: defaultBoxShadow(),
+                              backgroundColor: appStore.cardColor),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(data.icon, size: 35, color: appPrimaryColor),
                               10.height,
                               20.width,
-                              Text(data.budgetType, textAlign: TextAlign.center, style: TextStyle(fontSize: 12.0)),
+                              Text(data.budgetType,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 12.0)),
                             ],
                           ),
                         ).onTap(() {
@@ -200,6 +252,8 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                             MBAccountAnalyticsScreen().launch(context);
                           } else if (index == 3) {
                             MBNewCardScreen().launch(context);
+                          } else if (index == 1) {
+                            MBForexCalculator().launch(context);
                           }
                           setState(() {});
                         });
@@ -207,20 +261,22 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                     ),
                   ).center(),
                   0.height,
-
                 ],
               ).paddingOnly(right: 16, left: 16),
-
               145.height,
               Column(
                 // verticalDirection: VerticalDirection.down,
                 // mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Container(child: Text("powered by JS Bank", style: TextStyle(color: Colors.grey, fontSize: 12.0, fontWeight: FontWeight.bold))),
-                      // Image.asset("images/logo.png", height: 200, width: 200).cornerRadiusWithClipRRect(16),)
+                  Container(
+                      child: Text("powered by JS Bank",
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold))),
+                  // Image.asset("images/logo.png", height: 200, width: 200).cornerRadiusWithClipRRect(16),)
                 ],
               )
-
             ],
           ),
         ),

@@ -62,19 +62,20 @@ class MBProfileScreenState extends State<MBProfileScreen> {
     if (mounted) super.setState(fn);
   }
 
-  getField(String heading,String value){
-    return value!=null ? Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(heading, style: boldTextStyle(size: 18))
-            .paddingOnly(left: 16),
-        Text(value, style: TextStyle(fontSize: 13))
-            .paddingOnly(left: 16),
-        10.height,
-        Divider(),
-      ],
-    ) : Container();
+  getField(String heading, String value) {
+    return value != null
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(heading, style: boldTextStyle(size: 18))
+                  .paddingOnly(left: 16),
+              Text(value, style: TextStyle(fontSize: 13)).paddingOnly(left: 16),
+              10.height,
+              Divider(),
+            ],
+          )
+        : Container();
   }
 
   @override
@@ -93,13 +94,15 @@ class MBProfileScreenState extends State<MBProfileScreen> {
               16.height,
               Row(
                 children: [
-                  Container(width:120,child: Image.asset(User.instance.image)),
+                  Container(
+                      width: 120, child: Image.asset(User.instance.image)),
                   16.width,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(User.instance.name, style: boldTextStyle(size: 18)),
-                      Text('Account Type : ${User.instance.userType==UserType.sender ? "Sender" : "Reciver"}',
+                      Text(
+                          'Account Type : ${User.instance.userType == UserType.sender ? "Sender" : "Receiver"}',
                           overflow: TextOverflow.visible,
                           maxLines: 1,
                           style: primaryTextStyle()),
@@ -131,7 +134,7 @@ class MBProfileScreenState extends State<MBProfileScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) => MBSignInScreen()),
-                          (Route<dynamic> route) => false);
+                      (Route<dynamic> route) => false);
                 },
                 child:
                     Text('Logout', style: boldTextStyle(color: Colors.white)),
