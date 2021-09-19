@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gharpay/models/MBModel.dart';
 import 'package:gharpay/screens/MBAccountAnalyticsScreen.dart';
 import 'package:gharpay/screens/MBBudgetScreen.dart';
+import 'package:gharpay/screens/MBForexCalculator.dart';
 import 'package:gharpay/screens/MBNewCardScreen.dart';
 import 'package:gharpay/screens/MBSendMoneyScreen.dart';
 import 'package:gharpay/screens/MBSetAmountScreen.dart';
@@ -282,7 +283,10 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                                     ),
                                   )
                                 ]).show();
-                          } else if (index == 2) {
+                          } else if (index == 0 && User.instance.userType == UserType.sender) {
+                            MBForexCalculator().launch(context);
+                          }
+                          else if (index == 2) {
                             MBSetAmountScreen().launch(context);
                           } else if (index == 5) {
                             MBBudgetScreen().launch(context);
