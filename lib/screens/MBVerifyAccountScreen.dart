@@ -78,10 +78,15 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
       child: Scaffold(
         bottomNavigationBar: AppButton(
           text: MBBtnContinue,
+          textColor: Colors.white,
           elevation: 12.0,
           onTap: () {
-            finish(context);
-            MBDashBoardScreen().launch(context);
+            // finish(context);
+            // MBDashBoardScreen().launch(context);
+            Navigator.pushAndRemoveUntil(
+                context,
+                 MaterialPageRoute(builder: (BuildContext context) => MBDashBoardScreen()),
+                    (Route<dynamic> route) => false);
           },
           color: appPrimaryColor,
           width: context.width(),
@@ -95,7 +100,7 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
               24.height,
               Text(MBVerifySubTitleText, style: secondaryTextStyle(size: 16)),
               8.height,
-              Text(MBCodeText, style: secondaryTextStyle(size: 16, color: Colors.blue, decoration: TextDecoration.underline)),
+              Text(MBCodeText, style: secondaryTextStyle(size: 16, color: appPrimaryColor, decoration: TextDecoration.underline)),
               44.height,
               PinCodeTextField(
                 appContext: context,
@@ -106,7 +111,7 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
                 errorTextSpace: 30,
                 pinTheme: PinTheme(
                   shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(7),
                   fieldHeight: 50,
                   fieldWidth: 50,
                   activeFillColor: Colors.transparent,
@@ -139,7 +144,7 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
                   text: "This season will end in  $_counter seconds.\nDid't get code? ",
                   style: secondaryTextStyle(size: 16),
                   children: <TextSpan>[
-                    TextSpan(text: "Resend Code", style: boldTextStyle(color: Colors.blue, size: 16, decoration: TextDecoration.underline)),
+                    TextSpan(text: "Resend Code", style: boldTextStyle(color: appPrimaryColor, size: 16, decoration: TextDecoration.underline)),
                   ],
                 ),
               ).onTap(() {

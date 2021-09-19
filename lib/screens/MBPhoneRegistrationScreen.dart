@@ -73,10 +73,15 @@ class MBPhoneRegistrationScreenState extends State<MBPhoneRegistrationScreen> {
                 children: [
                   AppButton(
                     text: MBBtnContinueText,
+                    textColor: Colors.white,
                     elevation: 12.0,
                     onTap: () {
-                      finish(context);
-                      MBVerifyAccountScreen().launch(context);
+                      // finish(context);
+                      // MBVerifyAccountScreen().launch(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MBVerifyAccountScreen()),
+                      );
                     },
                     color: appPrimaryColor,
                     width: context.width(),

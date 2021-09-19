@@ -99,45 +99,50 @@ class MBWalkThroughScreenState extends State<MBWalkThroughScreen> with AfterLayo
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          PageView(controller: pageController, children: pages.map((e) => e).toList()),
-          Positioned(
-            bottom: 32,
-            left: 0,
-            right: 0,
-            child: Column(
-              children: [
-                AppButton(
-                  shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                  elevation: 12,
-                  onTap: () {
-                    pageController.nextPage(duration: _kDuration, curve: _kCurve);
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            PageView(controller: pageController, children: pages.map((e) => e).toList()),
+            Positioned(
+              bottom: 32,
+              left: 0,
+              right: 0,
+              child: Column(
+                children: [
+                  AppButton(
+                    shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                    elevation: 12,
+                    onTap: () {
+                      pageController.nextPage(duration: _kDuration, curve: _kCurve);
+                      if (currentPage == 3) {
+                        finish(context);
+                        MBSignUpScreen().launch(context);
+                      }
+                    },
+                    width: context.width(),
+                    child: Text(currentPage == 3 ? 'Let\'s create an account' : 'Next', style: boldTextStyle(color: Colors.white)),
+                    color: appPrimaryColor,
+                  ).paddingSymmetric(horizontal: 16),
+                  8.height,
+                  Text(currentPage == 3 ? 'Already have an account ? Sign In' : 'Skip', style: secondaryTextStyle()).paddingAll(8).onTap(() {
                     if (currentPage == 3) {
+                      MBSignInScreen().launch(context);
+                    } else {
                       finish(context);
-                      MBSignUpScreen().launch(context);
+                      MBDashBoardScreen().launch(context);
                     }
-                  },
-                  width: context.width(),
-                  child: Text(currentPage == 3 ? 'Let\'s create an account' : 'Next', style: boldTextStyle(color: Colors.white)),
-                  color: appPrimaryColor,
-                ).paddingSymmetric(horizontal: 16),
-                8.height,
-                Text(currentPage == 3 ? 'Already have an account ? Sign In' : 'Skip', style: secondaryTextStyle()).paddingAll(8).onTap(() {
-                  if (currentPage == 3) {
-                    MBSignInScreen().launch(context);
-                  } else {
-                    finish(context);
-                    MBDashBoardScreen().launch(context);
-                  }
-                }),
-                16.height,
-                DotIndicator(pageController: pageController, pages: pages, indicatorColor: appPrimaryColor, unselectedIndicatorColor: grey),
-              ],
-            ),
-          )
-        ],
+                  }),
+                  16.height,
+                  DotIndicator(pageController: pageController, pages: pages, indicatorColor: appPrimaryColor, unselectedIndicatorColor: grey),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

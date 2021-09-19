@@ -1,6 +1,6 @@
 const BHSender_id = 1;
 const BHReceiver_id = 2;
-const MBSignUpTitle = "Welcome!";
+const MBSignUpTitle = "Registration";
 const MBSignUpSubTitle = "Please provide following\ndetails for your new account";
 const MBCheckBoxText = "Be creating your account you have to agree with our Teams and Conditions.";
 const MBBtnText = "Sign up my account";

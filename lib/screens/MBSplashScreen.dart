@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gharpay/screens/MBWalkThroughScreen.dart';
-import 'package:gharpay/utils/MBImages.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class MBSplashScreen extends StatefulWidget {
