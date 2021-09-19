@@ -120,20 +120,21 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                         boxShadow: defaultBoxShadow(),
                       ),
                       alignment: Alignment.center,
-                      width: context.width() * 0.44,
+                      width: context.width() * 0.55,
                       margin: EdgeInsets.all(8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
 
-                          Icon(index==0 ? Icons.public : Icons.account_balance_wallet, size: 45, color: i == index ? white : Colors.black),
-                          10.width,
+                          Icon(index==0 ? Icons.public : Icons.account_balance_wallet, size: 50, color: i == index ? white : Colors.black),
+                          15.width,
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(index==0 ? "HRA \n Balance" : "Wallet \n Balance", style: TextStyle(color: i == index ? white : Colors.black)),
-                              8.height,
-                              Text(index==0 ? User.instance.hraWalletBalance.toString() + " Rs" : User.instance.jsWalletBalance.toString() + " Rs", style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
+                              Text(index==0 ? "HRA Balance" : "Wallet Balance", style: TextStyle(color: i == index ? white : Colors.black)),
+                              Text("Rs.", style: TextStyle(fontSize: 14, color: i == index ? white : Colors.black)),
+                              Text(index==0 ? User.instance.hraWalletBalance.toStringAsFixed(1) : User.instance.jsWalletBalance.toStringAsFixed(1), style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
                             ],
                           ),
                         ],

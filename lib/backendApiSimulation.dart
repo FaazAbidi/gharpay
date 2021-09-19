@@ -176,7 +176,7 @@ final List<User> userDatabase = [
         Transaction(
             receiverUserId: "0001",
             senderUserId: "004",
-            senderName: "Syed Hasan Faaz Abidi",
+            senderName: "Faaz Abidi",
             receiverName: "Asad Raza",
             receiverCurrency: "PKR",
             senderCurrency: "USD",
@@ -198,7 +198,7 @@ final List<User> userDatabase = [
         Transaction(
             receiverUserId: "0001",
             senderUserId: "004",
-            senderName: "Syed Hasan Faaz Abidi",
+            senderName: "Faaz Abidi",
             receiverName: "Asad Raza",
             receiverCurrency: "PKR",
             senderCurrency: "EUR",
@@ -232,7 +232,7 @@ final List<User> userDatabase = [
         Transaction(
             receiverUserId: "0002",
             senderUserId: "004",
-            senderName: "Syed Hasan Faaz Abidi",
+            senderName: "Faaz Abidi",
             receiverName: "Hussain Abbas",
             receiverCurrency: "PKR",
             senderCurrency: "AED",
@@ -254,7 +254,7 @@ final List<User> userDatabase = [
         Transaction(
             receiverUserId: "0002",
             senderUserId: "004",
-            senderName: "Syed Hasan Faaz Abidi",
+            senderName: "Faaz Abidi",
             receiverName: "Hussain Abbas",
             receiverCurrency: "PKR",
             senderCurrency: "CAD",
@@ -347,7 +347,7 @@ final List<User> userDatabase = [
   User(
       userType: UserType.sender,
       uid: "0004",
-      name: "Syed Hasan Faaz Abidi",
+      name: "Faaz Abidi",
       email: "hasan_faaz@email.com",
       phone: "0453-XXXXX23",
       image: "images/Syed Hasan Faaz Abidi.gif",
@@ -373,7 +373,7 @@ final List<User> userDatabase = [
       ],
       cards: [
         Card(
-            name: "Syed Hasan Faaz Abidi",
+            name: "Faaz Abidi",
             no: "9628 43XX XXXX XX91",
             company: Company.MasterCard,
             cvv: "803",
@@ -383,7 +383,7 @@ final List<User> userDatabase = [
         Transaction(
             receiverUserId: "0001",
             senderUserId: "004",
-            senderName: "Syed Hasan Faaz Abidi",
+            senderName: "Faaz Abidi",
             receiverName: "Asad Raza",
             receiverCurrency: "PKR",
             senderCurrency: "USD",
@@ -394,7 +394,7 @@ final List<User> userDatabase = [
         Transaction(
             receiverUserId: "0002",
             senderUserId: "004",
-            senderName: "Syed Hasan Faaz Abidi",
+            senderName: "Faaz Abidi",
             receiverName: "Hussain Abbas",
             receiverCurrency: "PKR",
             senderCurrency: "AED",
@@ -405,7 +405,7 @@ final List<User> userDatabase = [
         Transaction(
             receiverUserId: "0001",
             senderUserId: "004",
-            senderName: "Syed Hasan Faaz Abidi",
+            senderName: "Faaz Abidi",
             receiverName: "Asad Raza",
             receiverCurrency: "PKR",
             senderCurrency: "EUR",
@@ -416,7 +416,7 @@ final List<User> userDatabase = [
         Transaction(
             receiverUserId: "0002",
             senderUserId: "004",
-            senderName: "Syed Hasan Faaz Abidi",
+            senderName: "Faaz Abidi",
             receiverName: "Hussain Abbas",
             receiverCurrency: "PKR",
             senderCurrency: "CAD",

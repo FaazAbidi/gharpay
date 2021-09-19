@@ -96,7 +96,7 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
                 loading = true;
               });
               await NetworkProvider.login(
-                  "abuzar_rasool@email.com", "1234");
+                  "${widget.email}", "1234");
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
