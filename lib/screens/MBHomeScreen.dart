@@ -284,7 +284,7 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                                   )
                                 ]).show();
                           } else if (index == 0 && User.instance.userType == UserType.sender) {
-                            MBForexCalculator().launch(context);
+                            MBSendMoneyScreen().launch(context);
                           }
                           else if (index == 2) {
                             MBSetAmountScreen().launch(context);

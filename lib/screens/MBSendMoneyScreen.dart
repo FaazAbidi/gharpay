@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gharpay/backendApiSimulation.dart';
 import 'package:gharpay/models/MBModel.dart';
+import 'package:gharpay/screens/MBForexCalculator.dart';
 import 'package:gharpay/utils/MBDataProvider.dart';
 import 'package:gharpay/utils/AppColors.dart';
 import 'package:gharpay/utils/MBWidgets.dart';
@@ -131,13 +132,13 @@ class SinglePayeeCard extends StatelessWidget {
         decoration: boxDecorationWithRoundedCorners(
           borderRadius: BorderRadius.all(Radius.circular(16)),
           backgroundColor: appStore.cardColor,
-          boxShadow: defaultBoxShadow(),
+          boxShadow: defaultBoxShadow(spreadRadius: 2, blurRadius: 1.0),
         ),
         height: 120,
         width: double.infinity,
         child: InkWell(
           onTap: (){
-            
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => MBForexCalculator(payee: this.payee,)));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,

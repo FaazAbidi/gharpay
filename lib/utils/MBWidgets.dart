@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:gharpay/models/MBModel.dart';
 import 'package:gharpay/utils/MBImages.dart';
@@ -22,6 +24,7 @@ Widget textFieldWidget({
     autoFocus: false,
     textFieldType: textFieldType,
     maxLength: length,
+    cursorColor: appPrimaryColor,
     decoration: InputDecoration(
       filled: true,
       counterText: '',
@@ -30,7 +33,7 @@ Widget textFieldWidget({
       hintStyle: secondaryTextStyle(color: gray, size: 16),
       alignLabelWithHint: true,
       contentPadding: EdgeInsets.only(top: 8, bottom: 8, right: 8, left: 8),
-      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue.withOpacity(0.2)), borderRadius: BorderRadius.circular(8)),
+      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: appPrimaryColor.withOpacity(0.2)), borderRadius: BorderRadius.circular(8)),
       enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white), borderRadius: BorderRadius.circular(8)),
     ),
   );
