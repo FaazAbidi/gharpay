@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:gharpay/backendApiSimulation.dart';
 import 'package:gharpay/screens/MBDashBoardScreen.dart';
 import 'package:gharpay/utils/MBConts.dart';
 import 'package:gharpay/main.dart';
@@ -21,7 +22,7 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
   Timer _timer;
   var onTapRecognizer;
   String currentText = "";
-
+  bool loading=false;
   TextEditingController textEditingController = TextEditingController();
 
   // ignore: close_sinks
@@ -80,13 +81,28 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
           text: MBBtnContinue,
           textColor: Colors.white,
           elevation: 12.0,
-          onTap: () {
+          onTap: () async {
             // finish(context);
             // MBDashBoardScreen().launch(context);
-            Navigator.pushAndRemoveUntil(
-                context,
-                 MaterialPageRoute(builder: (BuildContext context) => MBDashBoardScreen()),
-                    (Route<dynamic> route) => false);
+
+            try{
+              setState(() {
+                loading=true;
+              });
+              await NetworkProvider.login("abuzar_rasool@email.com", "1234");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) => MBDashBoardScreen()),
+                      (Route<dynamic> route) => false);
+            }catch(e){
+              setState(() {
+                loading=true;
+              })
+              loading=false;
+              print(e);
+            }
+
+
           },
           color: appPrimaryColor,
           width: context.width(),

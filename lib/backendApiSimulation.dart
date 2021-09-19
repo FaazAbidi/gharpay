@@ -101,6 +101,7 @@ class NetworkProvider {
         orElse: () {
           throw Exception("Username and password is incorrect");
         });
+    User.instance = User();
     User.instance.uid = tempUser.uid;
     User.instance.email = tempUser.email;
   }
@@ -425,4 +426,4 @@ final List<User> userDatabase = [
       ])
 ];
 
-const String demoPassword = "12345678";
+const String demoPassword = "1234";

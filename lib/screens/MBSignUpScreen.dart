@@ -8,10 +8,9 @@ import 'package:gharpay/utils/MBWidgets.dart';
 import 'package:gharpay/utils/AppColors.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-enum accountType {
-  sender,
-  receiver,
-}
+import '../backendApiSimulation.dart';
+
+
 
 class MBSignUpScreen extends StatefulWidget {
   @override
@@ -30,7 +29,7 @@ class MBSignUpScreenState extends State<MBSignUpScreen> {
   FocusNode focusNodePhoneNum = FocusNode();
 
   bool rememberMe = false;
-  accountType accType;
+  UserType accType;
   bool isReceiver = false;
   bool isSender = true;
 
