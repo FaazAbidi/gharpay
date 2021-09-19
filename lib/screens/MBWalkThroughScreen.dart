@@ -133,7 +133,7 @@ class MBWalkThroughScreenState extends State<MBWalkThroughScreen> with AfterLayo
                       MBSignInScreen().launch(context);
                     } else {
                       finish(context);
-                      MBDashBoardScreen().launch(context);
+                      MBSignInScreen().launch(context);
                     }
                   }),
                   16.height,

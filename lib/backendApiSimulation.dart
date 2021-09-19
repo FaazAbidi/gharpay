@@ -91,7 +91,7 @@ class User {
 
 class NetworkProvider {
   static Future<void> delay() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 4));
   }
 
   static Future<void> login(String email, String password) async {
