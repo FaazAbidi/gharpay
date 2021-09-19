@@ -332,16 +332,29 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
-
                     20.width,
                     Column(
+
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Icon(
+                            Icons.credit_card_outlined,
+                            size: 50,
+                            color: white),
                         Text("Latest Transaction",
                             style: boldTextStyle(size: 20, color: white)),
                         10.height,
+                        // Row(
+                        //   children: [
+                        //     Text("Sender: ", style: boldTextStyle(size: 15, color: white)),
+                        //     // Spacer(),
+                        //     Text(User.instance.lastTransaction.senderName, style: TextStyle(
+                        //         color: white,
+                        //         fontWeight: FontWeight.normal),),
+                        //
+                        //   ],
+                        // ),
                         Text.rich(
                           TextSpan(
                             text: "Sender: ",
@@ -349,9 +362,10 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                             children: <TextSpan>[
                               TextSpan(
                                   text: User.instance.lastTransaction.senderName,
+
                                   style: TextStyle(
                                       color: white,
-                                      fontWeight: FontWeight.normal))
+                                      fontWeight: FontWeight.normal),)
                             ],
                           ),
                         ),
@@ -435,11 +449,11 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                         ),
                       ],
                     ),
-                    10.width,
-                    Icon(
-                        Icons.credit_card_outlined,
-                        size: 50,
-                        color: white),
+                    // 10.width,
+                    // Icon(
+                    //     Icons.credit_card_outlined,
+                    //     size: 50,
+                    //     color: white),
                     10.width,
                   ],
                 ).paddingOnly(left: 2, right: 5, bottom: 15, top: 15),
