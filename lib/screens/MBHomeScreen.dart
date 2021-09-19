@@ -16,7 +16,6 @@ import 'package:gharpay/utils/AppColors.dart';
 import 'package:gharpay/utils/MBWidgets.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:gharpay/screens/MBForexCalculator.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../backendApiSimulation.dart';
@@ -158,7 +157,6 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                                   : Icons.account_balance_wallet,
                               size: 50,
                               color: i == index ? white : Colors.black),
-                          Icon(index==0 ? Icons.public : Icons.account_balance_wallet, size: 50, color: i == index ? white : Colors.black),
                           15.width,
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -169,18 +167,6 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                                   style: TextStyle(
                                       color:
                                           i == index ? white : Colors.black)),
-                              Text("Rs.",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color:
-                                          i == index ? white : Colors.black)),
-                              Text(
-                                  index == 0
-                                      ? User.instance.hraWalletBalance
-                                          .toStringAsFixed(1)
-                                      : User.instance.jsWalletBalance
-                                          .toStringAsFixed(1),
-                              Text(index==0 ? "HRA Balance" : "Wallet Balance", style: TextStyle(color: i == index ? white : Colors.black)),
                               6.height,
                               Text(
                                   index == 0
@@ -306,10 +292,10 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                                     ),
                                   )
                                 ]).show();
-                          } else if (index == 0 && User.instance.userType == UserType.sender) {
+                          } else if (index == 0 &&
+                              User.instance.userType == UserType.sender) {
                             MBForexCalculator().launch(context);
-                          }
-                          else if (index == 2) {
+                          } else if (index == 2) {
                             MBSetAmountScreen().launch(context);
                           } else if (index == 5) {
                             MBBudgetScreen().launch(context);
@@ -317,8 +303,6 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                             MBAccountAnalyticsScreen().launch(context);
                           } else if (index == 3) {
                             MBNewCardScreen().launch(context);
-                          } else if (index == 1) {
-                            MBForexCalculator().launch(context);
                           }
                           setState(() {});
                         });
@@ -328,20 +312,6 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                   0.height,
                 ],
               ).paddingOnly(right: 16, left: 16),
-              145.height,
-              Column(
-                // verticalDirection: VerticalDirection.down,
-                // mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                      child: Text("powered by JS Bank",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.bold))),
-                  // Image.asset("images/logo.png", height: 200, width: 200).cornerRadiusWithClipRRect(16),)
-                ],
-              )
               SizedBox(
                 height: context.height() * 0.2,
               ),
