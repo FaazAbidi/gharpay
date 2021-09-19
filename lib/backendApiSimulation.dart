@@ -130,6 +130,7 @@ class NetworkProvider {
   static getCurrentUserTransactions() async {
     await delay();
     User.instance.transactions = _getCurrentUser().transactions;
+    User.instance.lastTransaction = User.instance.transactions.last;
   }
 
   static getCurrentUserCards() async {

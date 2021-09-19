@@ -36,11 +36,11 @@ class MBHomeScreenState extends State<MBHomeScreen> {
   // List<BudgetDetails> completeList = getCompleteList();
 
   TextEditingController dateController = TextEditingController();
-
   int i = 0;
 
   @override
   void initState() {
+    User.instance.lastTransaction = User.instance.transactions.last;
     super.initState();
     init();
   }
@@ -309,17 +309,144 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                       },
                     ),
                   ).center(),
-                  0.height,
+                  10.height,
                 ],
               ).paddingOnly(right: 16, left: 16),
-              SizedBox(
-                height: context.height() * 0.2,
-              ),
+              // SizedBox(
+              //   height: context.height() * 0.2,
+              // ),
+              Container(
+                decoration: boxDecorationWithRoundedCorners(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  backgroundColor: appPrimaryColor,
+                  boxShadow: defaultBoxShadow(),
+                ),
+
+                // alignment: Alignment.center,
+                width: context.width() * 0.9,
+                margin: EdgeInsets.all(8),
+
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+
+                    20.width,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Latest Transaction",
+                            style: boldTextStyle(size: 20, color: white)),
+                        10.height,
+                        Text.rich(
+                          TextSpan(
+                            text: "Sender: ",
+                            style: boldTextStyle(size: 15, color: white),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: User.instance.lastTransaction.senderName,
+                                  style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          ),
+                        ),
+                        Text.rich(
+                          TextSpan(
+                            text: "Receiver: ",
+                            style: boldTextStyle(size: 15, color: white),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: User.instance.lastTransaction.receiverName,
+                                  style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          ),
+                        ),
+                        Text.rich(
+                          TextSpan(
+                            text: "Receiver Currency: ",
+                            style: boldTextStyle(size: 15, color: white),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: User.instance.lastTransaction.receiverCurrency,
+                                  style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          ),
+                        ),
+                        Text.rich(
+                          TextSpan(
+                            text: "Sender Currency: ",
+                            style: boldTextStyle(size: 15, color: white),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: User.instance.lastTransaction.senderCurrency,
+                                  style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          ),
+                        ),
+                        Text.rich(
+                          TextSpan(
+                            text: "Exchange Rate: ",
+                            style: boldTextStyle(size: 15, color: white),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: User.instance.lastTransaction.exchangeRate.toString(),
+                                  style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          ),
+                        ),
+                        Text.rich(
+                          TextSpan(
+                            text: "Sent Amount: ",
+                            style: boldTextStyle(size: 15, color: white),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: User.instance.lastTransaction.sentAmount.toString(),
+                                  style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          ),
+                        ),
+                        Text.rich(
+                          TextSpan(
+                            text: "Date: ",
+                            style: boldTextStyle(size: 15, color: white),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: User.instance.lastTransaction.time.toString(),
+                                  style: TextStyle(
+                                      color: white,
+                                      fontWeight: FontWeight.normal))
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    10.width,
+                    Icon(
+                        Icons.credit_card_outlined,
+                        size: 50,
+                        color: white),
+                    10.width,
+                  ],
+                ).paddingOnly(left: 2, right: 5, bottom: 15, top: 15),
+              ).paddingAll(5),
               Text("powered by JS Bank",
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 12.0,
-                      fontWeight: FontWeight.w400))
+                      fontWeight: FontWeight.w400)),
+              15.height,
             ],
           ),
         ),
