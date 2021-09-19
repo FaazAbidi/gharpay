@@ -104,6 +104,7 @@ class NetworkProvider {
     User.instance = User();
     User.instance.uid = tempUser.uid;
     User.instance.email = tempUser.email;
+    User.instance=tempUser;
   }
 
   static User _getCurrentUser() {

@@ -14,13 +14,15 @@ import 'package:gharpay/utils/AppColors.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import '../backendApiSimulation.dart';
+import '../utils/AppColors.dart';
+
 class MBHomeScreen extends StatefulWidget {
   @override
   MBHomeScreenState createState() => MBHomeScreenState();
 }
 
 class MBHomeScreenState extends State<MBHomeScreen> {
-  List<BudgetDetails> budgetDetailList = getBudgetDetailList();
   List<BudgetDetails> operationsList = getOperationsList();
   List<BudgetDetails> operationsList1 = getOperationsList1();
   List<BudgetDetails> operationsList2 = getOperationsList2();
@@ -58,51 +60,42 @@ class MBHomeScreenState extends State<MBHomeScreen> {
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: boxDecorationWithRoundedCorners(
+                  backgroundColor: Colors.white,
+                  boxShadow: defaultBoxShadow(),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            8.height,
+                            Text(MBHelloText, style: TextStyle(fontSize: 17, color: Colors.black45)),
+
+                            Text.rich(
+                              TextSpan(
+                                text: User.instance.name.split(new RegExp('\\s+'))[0],
+                                style: TextStyle(fontSize: 25),
+                                children: <TextSpan>[TextSpan(text: User.instance.name.split(new RegExp('\\s+'))[1], style: TextStyle(fontSize:23, color: appPrimaryColor, fontWeight: FontWeight.w600))],
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    16.height,
+                    ClipRRect(borderRadius: BorderRadius.all(Radius.circular(30)), child: Image.asset(User.instance.image, width: 100, height: 100)),
+                  ],
+                ),
+              ),
               Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Text(MBHelloText, style: TextStyle(fontSize: 16, color: Colors.black45)),
-                          8.height,
-                          Text.rich(
-                            TextSpan(
-                              text: "Ghar",
-                              style: TextStyle(fontSize: 40),
-                              children: <TextSpan>[TextSpan(text: "PAY", style: TextStyle(fontSize:40, color: Color(0xff015a66), fontWeight: FontWeight.w600))],
-                            ),
-                          )
-                        ],
-                      ),
-                      16.height,
-                      ClipRRect(borderRadius: BorderRadius.all(Radius.circular(30)), child: Image.asset(mb_profile1, width: 50, height: 50)),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          8.height,
-                          Text(MBHelloText, style: TextStyle(fontSize: 16, color: Colors.black45)),
-
-                          Text.rich(
-                            TextSpan(
-                              text: MBNameText,
-                              style: TextStyle(fontSize: 22),
-                              children: <TextSpan>[TextSpan(text: MBLastNameText, style: TextStyle(fontSize:22, color: Color(0xff015a66), fontWeight: FontWeight.w600))],
-                            ),
-                          )
-                        ],
-                      ),
-                      // ClipRRect(borderRadius: BorderRadius.all(Radius.circular(30)), child: Image.asset(mb_profile1, width: 50, height: 50)),
-                    ],
-                  ),
-                  16.height,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -115,12 +108,11 @@ class MBHomeScreenState extends State<MBHomeScreen> {
               Container(
                 height: 150,
                 child: ListView.builder(
-                  itemCount: budgetDetailList.length,
+                  itemCount: 2,
                   shrinkWrap: true,
                   padding: EdgeInsets.all(8),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    BudgetDetails data = budgetDetailList[index];
                     return Container(
                       decoration: boxDecorationWithRoundedCorners(
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -134,14 +126,14 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
 
-                          Icon(data.icon, size: 45, color: i == index ? white : Colors.black),
+                          Icon(index==0 ? Icons.public : Icons.account_balance_wallet, size: 45, color: i == index ? white : Colors.black),
                           10.width,
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(data.budgetType, style: TextStyle(color: i == index ? white : Colors.black)),
+                              Text(index==0 ? "HRA \n Balance" : "Wallet \n Balance", style: TextStyle(color: i == index ? white : Colors.black)),
                               8.height,
-                              Text(data.totalCost, style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
+                              Text(index==0 ? User.instance.hraWalletBalance.toString() + " Rs" : User.instance.jsWalletBalance.toString() + " Rs", style: boldTextStyle(size: 16, color: i == index ? white : Colors.black)),
                             ],
                           ),
                         ],
