@@ -97,7 +97,7 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
             }catch(e){
               setState(() {
                 loading=true;
-              })
+              });
               loading=false;
               print(e);
             }
