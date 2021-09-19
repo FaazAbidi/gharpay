@@ -8,6 +8,7 @@ import 'package:gharpay/screens/MBForexCalculator.dart';
 import 'package:gharpay/screens/MBNewCardScreen.dart';
 import 'package:gharpay/screens/MBSendMoneyScreen.dart';
 import 'package:gharpay/screens/MBSetAmountScreen.dart';
+import 'package:gharpay/screens/MBForexCalculator.dart';
 import 'package:gharpay/utils/MBConts.dart';
 import 'package:gharpay/utils/MBDataProvider.dart';
 import 'package:gharpay/utils/MBImages.dart';
@@ -303,6 +304,8 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                             MBAccountAnalyticsScreen().launch(context);
                           } else if (index == 3) {
                             MBNewCardScreen().launch(context);
+                          } else if (index == 1) {
+                            MBForexCalculator().launch(context);
                           }
                           setState(() {});
                         });
