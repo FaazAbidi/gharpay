@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:gharpay/screens/MBHelpAndSupportScreen.dart';
 import 'package:gharpay/utils/MBImages.dart';
 import 'package:gharpay/utils/MBWidgets.dart';
@@ -38,7 +39,7 @@ class MBSettingScreenState extends State<MBSettingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              22.height,
+              25.height,
               Text('App Settings', style: boldTextStyle(size: 26)),
               8.height,
               Container(
@@ -53,30 +54,32 @@ class MBSettingScreenState extends State<MBSettingScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           8.height,
-                          Text('Do more with pro account', style: primaryTextStyle(color: Colors.white)),
+                          Text('Now enjoy exciting features at',
+                              style: primaryTextStyle(color: Colors.white)),
                           4.height,
-                          Text('Get Premium Now', style: boldTextStyle(color: Colors.white)),
+                          Text('JSBank Wallet App',
+                              style: boldTextStyle(color: Colors.white)),
                           16.height,
-                          Text('Purchase Account', style: boldTextStyle(color: Colors.white, decoration: TextDecoration.underline))
+                          Text('Download Now',
+                              style: boldTextStyle(
+                                  color: Colors.white,
+                                  decoration: TextDecoration.underline))
                         ],
                       ).paddingOnly(left: 16),
                     ).cornerRadiusWithClipRRect(20).paddingOnly(top: 36),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Image.asset(mb_trophy_logo, height: 70, width: 70, fit: BoxFit.cover).paddingOnly(right: 16),
-                    ),
                   ],
                 ),
               ),
-              22.height,
+              25.height,
               Row(
                 children: [
-                  Icon(Icons.notification_important_sharp, color: appPrimaryColor),
+                  Icon(Icons.notification_important_sharp,
+                      color: appPrimaryColor),
                   8.width,
                   Text('Get Notification', style: primaryTextStyle()).expand(),
                   Switch(
-                    activeColor: Colors.green,
-                    activeTrackColor: Colors.grey,
+                    activeColor: appPrimaryColor,
+                    activeTrackColor: appSecondaryBackgroundColor,
                     inactiveTrackColor: Colors.grey,
                     value: isCheck,
                     onChanged: (val) {
@@ -86,44 +89,51 @@ class MBSettingScreenState extends State<MBSettingScreen> {
                   )
                 ],
               ),
-              Row(
-                children: [
-                  Icon(Icons.email, color: appPrimaryColor),
-                  8.width,
-                  Text('Email Newsletters', style: primaryTextStyle()).expand(),
-                  Switch(
-                    activeColor: Colors.green,
-                    activeTrackColor: Colors.grey,
-                    inactiveTrackColor: Colors.grey,
-                    value: isCheck1,
-                    onChanged: (val) {
-                      isCheck1 = val;
-                      setState(() {});
-                    },
-                  )
-                ],
-              ),
-              16.height,
-              settingRowWidget(name: 'Privacy and Security', icon: Icons.security, icon1: Icons.arrow_forward_ios),
-              22.height,
-              settingRowWidget(name: 'Account Settings', icon: Icons.settings_sharp, icon1: Icons.arrow_forward_ios),
-              22.height,
-              settingRowWidget(name: 'Set Stock Rates', icon: Icons.rate_review, icon1: Icons.arrow_forward_ios),
-              22.height,
-              settingRowWidget(name: 'Date & Usage', icon: Icons.data_usage, icon1: Icons.arrow_forward_ios),
-              22.height,
-              settingRowWidget(name: 'Help & Support', icon: Icons.help, icon1: Icons.arrow_forward_ios).onTap(() {
+              25.height,
+              settingRowWidget(
+                  name: 'Privacy and Security',
+                  icon: Icons.security,
+                  icon1: Icons.arrow_forward_ios),
+              25.height,
+              settingRowWidget(
+                  name: 'Account Settings',
+                  icon: Icons.settings_sharp,
+                  icon1: Icons.arrow_forward_ios),
+              25.height,
+              settingRowWidget(
+                  name: 'Forex Updates',
+                  icon: Icons.rate_review,
+                  icon1: Icons.arrow_forward_ios),
+              25.height,
+              settingRowWidget(
+                  name: 'Date & Usage',
+                  icon: Icons.data_usage,
+                  icon1: Icons.arrow_forward_ios),
+              25.height,
+              settingRowWidget(
+                      name: 'Help & Support',
+                      icon: Icons.help,
+                      icon1: Icons.arrow_forward_ios)
+                  .onTap(() {
                 MBHelpAndSupportScreen(name: 'Help & Support').launch(context);
               }),
-              22.height,
-              settingRowWidget(name: 'Factory Reset', icon: Icons.block, icon1: Icons.arrow_forward_ios),
-              22.height,
+              25.height,
+              settingRowWidget(
+                  name: 'About Us',
+                  icon: Icons.developer_mode_outlined,
+                  icon1: Icons.arrow_forward_ios),
+              25.height,
               AppButton(
+                shapeBorder: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 width: context.width(),
                 color: appPrimaryColor,
                 elevation: 12,
                 onTap: () {},
-                child: Text('Deactivate My Account', style: boldTextStyle(color: Colors.white)),
+                child: Text(
+                  'Deactivate My Account',
+                  style: boldTextStyle(color: Colors.white),
+                ),
               )
             ],
           ).paddingAll(16),

@@ -33,8 +33,8 @@ class MBSignInScreenState extends State<MBSignInScreen> {
   @override
   void initState() {
     super.initState();
-    emailController.text = "abc@jsbank.com";
-    phoneController.text = "+9233548195";
+    emailController.text = "asad_raza@email.com";
+    // phoneController.text = "+9233548195";
     init();
   }
 
@@ -64,7 +64,7 @@ class MBSignInScreenState extends State<MBSignInScreen> {
                 Text(MBSignInSubTitle, style: secondaryTextStyle(size: 14)),
                 44.height,
                 textFieldWidget(
-                  hintText: 'Email',
+                  hintText: 'Enter Email Address',
                   controller: emailController,
                   textFieldType: TextFieldType.EMAIL,
                   focusNode: focusNodeEmail,
@@ -72,7 +72,7 @@ class MBSignInScreenState extends State<MBSignInScreen> {
                 ),
                 8.height,
                 textFieldWidget(
-                  hintText: 'Phone',
+                  hintText: 'Enter Phone No.',
                   controller: phoneController,
                   textFieldType: TextFieldType.PHONE,
                   focusNode: focusNodePassWord,
@@ -90,7 +90,8 @@ class MBSignInScreenState extends State<MBSignInScreen> {
                   },
                   color: appPrimaryColor,
                   width: context.width(),
-                  shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                  shapeBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
                 ),
                 20.height,
                 Align(
@@ -99,7 +100,11 @@ class MBSignInScreenState extends State<MBSignInScreen> {
                     TextSpan(
                       text: MBTextAccountTitle,
                       style: primaryTextStyle(size: 14),
-                      children: <TextSpan>[TextSpan(text: MBTextSignUp, style: secondaryTextStyle(size: 14))],
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: MBTextSignUp,
+                            style: secondaryTextStyle(size: 14))
+                      ],
                     ),
                   ).onTap(() {
                     finish(context);
