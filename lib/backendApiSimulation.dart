@@ -94,7 +94,7 @@ class NetworkProvider {
     await Future.delayed(Duration(seconds: 2));
   }
 
-  static Future<void> loginAsSender(String email, String password) async {
+  static Future<void> login(String email, String password) async {
     await delay();
     User tempUser = userDatabase.firstWhere(
             (element) => element.email == email && password == demoPassword,
