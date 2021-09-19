@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gharpay/backendApiSimulation.dart';
 import 'package:gharpay/screens/MBDashBoardScreen.dart';
 import 'package:gharpay/utils/MBConts.dart';
@@ -13,6 +14,11 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class MBVerifyAccountScreen extends StatefulWidget {
+  String phone;
+  String email;
+
+  MBVerifyAccountScreen({@required this.email, @required this.phone});
+
   @override
   MBVerifyAccountScreenState createState() => MBVerifyAccountScreenState();
 }
@@ -22,7 +28,7 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
   Timer _timer;
   var onTapRecognizer;
   String currentText = "";
-  bool loading=false;
+  bool loading = false;
   TextEditingController textEditingController = TextEditingController();
 
   // ignore: close_sinks
@@ -78,35 +84,36 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: AppButton(
-          text: MBBtnContinue,
+          text: loading ? "Authenticating" : MBBtnContinue,
           textColor: Colors.white,
           elevation: 12.0,
           onTap: () async {
             // finish(context);
             // MBDashBoardScreen().launch(context);
 
-            try{
+            try {
               setState(() {
-                loading=true;
+                loading = true;
               });
-              await NetworkProvider.login("abuzar_rasool@email.com", "1234");
+              await NetworkProvider.login(
+                  "abuzar_rasool@email.com", "1234");
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (BuildContext context) => MBDashBoardScreen()),
-                      (Route<dynamic> route) => false);
-            }catch(e){
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => MBDashBoardScreen()),
+                  (Route<dynamic> route) => false);
+            } catch (e) {
               setState(() {
-                loading=true;
+                loading = true;
               });
-              loading=false;
+              loading = false;
               print(e);
             }
-
-
           },
           color: appPrimaryColor,
           width: context.width(),
-          shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+          shapeBorder: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8))),
         ).paddingAll(24),
         body: SingleChildScrollView(
           child: Column(
@@ -116,11 +123,18 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
               24.height,
               Text(MBVerifySubTitleText, style: secondaryTextStyle(size: 16)),
               8.height,
-              Text(MBCodeText, style: secondaryTextStyle(size: 16, color: appPrimaryColor, decoration: TextDecoration.underline)),
+              Text(widget.phone,
+                  style: secondaryTextStyle(
+                      size: 16,
+                      color: appPrimaryColor,
+                      decoration: TextDecoration.underline)),
               44.height,
               PinCodeTextField(
                 appContext: context,
-                pastedTextStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+                pastedTextStyle: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14),
                 length: 4,
                 showCursor: false,
                 animationType: AnimationType.fade,
@@ -157,16 +171,29 @@ class MBVerifyAccountScreenState extends State<MBVerifyAccountScreen> {
               34.height,
               Text.rich(
                 TextSpan(
-                  text: "This season will end in  $_counter seconds.\nDid't get code? ",
+                  text:
+                      "This season will end in  $_counter seconds.\nDid't get code? ",
                   style: secondaryTextStyle(size: 16),
                   children: <TextSpan>[
-                    TextSpan(text: "Resend Code", style: boldTextStyle(color: appPrimaryColor, size: 16, decoration: TextDecoration.underline)),
+                    TextSpan(
+                        text: "Resend Code",
+                        style: boldTextStyle(
+                            color: appPrimaryColor,
+                            size: 16,
+                            decoration: TextDecoration.underline)),
                   ],
                 ),
               ).onTap(() {
                 _startTimer();
               }),
-              16.height,
+              SizedBox(height: context.height() * 0.2),
+              if (loading)
+                Center(
+                  child: SpinKitDoubleBounce(
+                    color: appPrimaryColor,
+                    size: 50.0,
+                  ),
+                )
             ],
           ).paddingOnly(right: 16, left: 16, bottom: 44, top: 44),
         ),

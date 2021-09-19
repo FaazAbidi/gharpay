@@ -16,7 +16,7 @@ class MBSignInScreen extends StatefulWidget {
 
 class MBSignInScreenState extends State<MBSignInScreen> {
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
   FocusNode focusNodeEmail = FocusNode();
   FocusNode focusNodePassWord = FocusNode();
@@ -27,12 +27,14 @@ class MBSignInScreenState extends State<MBSignInScreen> {
   void dispose() {
     super.dispose();
     focusNodeEmail.dispose();
-    passwordController.dispose();
+    phoneController.dispose();
   }
 
   @override
   void initState() {
     super.initState();
+    emailController.text = "abc@jsbank.com";
+    phoneController.text = "+9233548195";
     init();
   }
 
@@ -70,77 +72,10 @@ class MBSignInScreenState extends State<MBSignInScreen> {
                 ),
                 8.height,
                 textFieldWidget(
-                  hintText: 'password',
-                  controller: passwordController,
-                  textFieldType: TextFieldType.NAME,
+                  hintText: 'Phone',
+                  controller: phoneController,
+                  textFieldType: TextFieldType.PHONE,
                   focusNode: focusNodePassWord,
-                ),
-                16.height,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("I am a",
-                      style: TextStyle(
-                          fontSize: 16
-                      ),
-                    ),
-                  ],
-                ),
-                8.height,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppButton(
-                      textStyle: TextStyle(color: isSender ? Colors.white : appPrimaryColor),
-                      textColor: isSender ? Colors.white : appPrimaryColor,
-                      text: "Sender",
-                      onTap: () {
-                        setState(() {
-                          isSender = true;
-                          isReceiver = false;
-                        });
-                      },
-                      color: isSender ? appPrimaryColor: Colors.white,
-                      width: context.width()/2.4,
-                      shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                    ),
-                    8.width,
-                    AppButton(
-                      textStyle: TextStyle(color: isReceiver ? Colors.white : appPrimaryColor),
-                      textColor: isReceiver ? Colors.white : appPrimaryColor,
-                      text: "Receiver",
-                      onTap: () {
-                        setState(() {
-                          isSender = false;
-                          isReceiver = true;
-                        });
-                      },
-                      color: isReceiver ? appPrimaryColor : Colors.white,
-                      width: context.width()/2.4,
-                      shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                    ),
-                  ],
-                ),
-
-                Offstage(
-                  offstage: isSender,
-                  child: Column(
-                    children: [
-                      textFieldWidget(
-                        hintText: 'CNIC',
-                        textFieldType: TextFieldType.EMAIL,
-                        focusNode: focusNodeEmail,
-                      ),
-                      8.height,
-                      textFieldWidget(
-                        hintText: 'Phone number',
-                        // controller: emailController,
-                        textFieldType: TextFieldType.EMAIL,
-                        focusNode: focusNodeEmail,
-                      ),
-                    ],
-                  ),
-
                 ),
                 16.height,
                 AppButton(
@@ -148,7 +83,10 @@ class MBSignInScreenState extends State<MBSignInScreen> {
                   textColor: Colors.white,
                   text: "Sign in",
                   onTap: () {
-                    MBVerifyAccountScreen().launch(context);
+                    MBVerifyAccountScreen(
+                      email: emailController.text,
+                      phone: phoneController.text,
+                    ).launch(context);
                   },
                   color: appPrimaryColor,
                   width: context.width(),
