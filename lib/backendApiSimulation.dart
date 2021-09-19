@@ -21,18 +21,19 @@ class Transaction {
 
   Transaction(
       {this.senderUserId,
-        this.receiverUserId,
-        this.senderName,
-        this.receiverName,
-        this.senderCurrency,
-        this.receiverCurrency,
-        this.sentAmount,
-        this.exchangeRate,
-        this.time,
-        this.status});
+      this.receiverUserId,
+      this.senderName,
+      this.receiverName,
+      this.senderCurrency,
+      this.receiverCurrency,
+      this.sentAmount,
+      this.exchangeRate,
+      this.time,
+      this.status});
 }
 
-enum Company {Visa, MasterCard}
+enum Company { Visa, MasterCard }
+
 class Card {
   String name;
   DateTime expiryDate;
@@ -74,40 +75,40 @@ class User {
 
   User(
       {this.uid,
-        this.transactions,
-        this.cards,
-        this.payees,
-        this.userType,
-        this.hraWalletBalance,
-        this.jsWalletBalance,
-        this.phone,
-        this.cnic,
-        this.mobileNetwork,
-        this.email,
-        this.lastTransaction,
-        this.name,
-        this.image});
+      this.transactions,
+      this.cards,
+      this.payees,
+      this.userType,
+      this.hraWalletBalance,
+      this.jsWalletBalance,
+      this.phone,
+      this.cnic,
+      this.mobileNetwork,
+      this.email,
+      this.lastTransaction,
+      this.name,
+      this.image});
 }
 
 class NetworkProvider {
-  static Future<void> delay({int sec=4}) async {
+  static Future<void> delay({int sec = 4}) async {
     await Future.delayed(Duration(seconds: sec));
   }
 
   static Future<void> login(String email, String password) async {
     await delay();
     User tempUser = userDatabase.firstWhere(
-            (element) => element.email == email && password == demoPassword,
+        (element) => element.email == email && password == demoPassword,
         orElse: () {
-          throw Exception("Username and password is incorrect");
-        });
+      throw Exception("Username and password is incorrect");
+    });
     User.instance = User();
     User.instance.uid = tempUser.uid;
     User.instance.email = tempUser.email;
-    User.instance=tempUser;
+    User.instance = tempUser;
   }
 
-  static Future<void> transferHRAtoWallet (String hra) async {
+  static Future<void> transferHRAtoWallet(String hra) async {
     await delay(sec: 2);
     try {
       User.instance.hraWalletBalance -= double.parse(hra);
@@ -116,9 +117,7 @@ class NetworkProvider {
     } catch (e) {
       return false;
     }
-
   }
-
 
   static User _getCurrentUser() {
     return userDatabase
@@ -218,7 +217,8 @@ final List<User> userDatabase = [
             exchangeRate: 186.5,
             sentAmount: 300,
             time: DateTime(2021, 7, 1),
-            status: Status.cancelled),]),
+            status: Status.cancelled),
+      ]),
   User(
       userType: UserType.receiver,
       uid: "0002",
@@ -288,20 +288,17 @@ final List<User> userDatabase = [
             name: "Asad Raza",
             cnic: "42201-XXXXXXX-7",
             mobileNo: "0333-XXXXX66",
-            image: "images/Asad Raza.gif"
-        ),
+            image: "images/Asad Raza.gif"),
         Payee(
             name: "Hussain Abbas",
             cnic: "42000-XXXXXXX-9",
             mobileNo: "0334-XXXXX80",
-            image: "images/Hussain Abbas.gif"
-        ),
+            image: "images/Hussain Abbas.gif"),
         Payee(
             name: "Amma",
             mobileNo: "0321-XXXXX43",
             cnic: "42101-XXXXXXX-4",
-            image: "images/Amma.gif"
-        )
+            image: "images/Amma.gif")
       ],
       cards: [
         Card(
@@ -309,8 +306,14 @@ final List<User> userDatabase = [
             no: "4588 26XX XXXX XX73",
             company: Company.Visa,
             cvv: "975",
-            expiryDate: DateTime(2024,05)
-        )],
+            expiryDate: DateTime(2024, 05)),
+        Card(
+            name: "Abuzar Rasool",
+            no: "5568 78XX XXXX XX21",
+            company: Company.MasterCard,
+            cvv: "248",
+            expiryDate: DateTime(2023, 02))
+      ],
       transactions: [
         Transaction(
             receiverUserId: "0001",
@@ -369,20 +372,17 @@ final List<User> userDatabase = [
             name: "Asad Raza",
             cnic: "42201-XXXXXXX-7",
             mobileNo: "0333-XXXXX66",
-            image: "images/Asad Raza.gif"
-        ),
+            image: "images/Asad Raza.gif"),
         Payee(
             name: "Hussain Abbas",
             cnic: "42000-XXXXXXX-9",
             mobileNo: "0334-XXXXX80",
-            image: "images/Hussain Abbas.gif"
-        ),
+            image: "images/Hussain Abbas.gif"),
         Payee(
-          name: "Amma",
-          mobileNo: "0321-XXXXX43",
-          cnic: "42101-XXXXXXX-4",
-          image: "images/Amma.gif"
-        )
+            name: "Amma",
+            mobileNo: "0321-XXXXX43",
+            cnic: "42101-XXXXXXX-4",
+            image: "images/Amma.gif")
       ],
       cards: [
         Card(
@@ -390,8 +390,8 @@ final List<User> userDatabase = [
             no: "9628 43XX XXXX XX91",
             company: Company.MasterCard,
             cvv: "803",
-            expiryDate: DateTime(2025,03)
-        )],
+            expiryDate: DateTime(2025, 03))
+      ],
       transactions: [
         Transaction(
             receiverUserId: "0001",

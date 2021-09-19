@@ -6,6 +6,10 @@ import 'package:gharpay/utils/MBWidgets.dart';
 import 'package:gharpay/main.dart';
 import 'package:gharpay/utils/AppColors.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:gharpay/utils/MBWidgets.dart';
+
+import '../backendApiSimulation.dart';
+import 'MBSignInScreen.dart';
 
 class MBCardScreen extends StatefulWidget {
   static String tag = '/MBWatchTutorialScreen';
@@ -42,72 +46,40 @@ class MBCardScreenState extends State<MBCardScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               28.height,
-              Text('Your Cards', style: boldTextStyle(size: 26)).paddingOnly(left: 16),
+              Text('Your Cards', style: boldTextStyle(size: 26))
+                  .paddingOnly(left: 16),
               8.height,
-              Text('2 Physical 1 virtual debit card', style: primaryTextStyle()).paddingOnly(left: 16),
-              16.height,
-              Row(
-                children: [
-                  16.width,
-                  AppButton(
-                    child: Text('Physical Card', textAlign: TextAlign.center, style: primaryTextStyle(color: Colors.white)),
-                    color: appPrimaryColor,
-                    onTap: () {},
-                    width: 120,
-                  ),
-                  16.width,
-                  AppButton(
-                    child: Text('Virtual Card', textAlign: TextAlign.center, style: primaryTextStyle(
-                        // color: appStore.isDarkModeOn ? white : scaffoldColorDark
-                      color: scaffoldColorDark
-                    )),
-                    color: MBVirtualCardColor,
-                    // color: appStore.isDarkModeOn ? appStore.cardColor : MBVirtualCardColor,
-                    onTap: () {},
-                    width: 120,
-                  ),
-                ],
-              ).paddingOnly(left: 8),
+              Text('You have ${User.instance.cards.length} Physical Cards ',
+                      style: primaryTextStyle())
+                  .paddingOnly(left: 16),
               16.height,
               Container(
                 height: 220,
                 child: ListView.builder(
                     padding: EdgeInsets.only(left: 8, right: 8),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 2,
+                    itemCount: User.instance.cards.length,
                     itemBuilder: (context, index) {
-                      return mastercardWidget(width: context.width() * 0.85).paddingOnly(right: 8, left: 8);
+                      return mastercardWidget(
+                              width: context.width() * 0.85,
+                              name: User.instance.cards[index].name,
+                              cardNum: User.instance.cards[index].no,
+                              exp: User.instance.cards[index].expiryDate)
+                          .paddingOnly(right: 8, left: 8);
                     }),
               ),
               16.height,
-              Text('Card Settings', style: boldTextStyle()).paddingOnly(left: 16),
+              Text('Card Details', style: boldTextStyle())
+                  .paddingOnly(left: 16),
               16.height,
-              Container(
-                decoration: boxDecorationWithRoundedCorners(boxShadow: defaultBoxShadow(), backgroundColor: Colors.white),
-                child: Row(
-                  children: [
-                    8.width,
-                    Icon(Icons.contactless_outlined, color: appPrimaryColor),
-                    8.width,
-                    Text('ContactLess payments', style: primaryTextStyle()).expand(),
-                    Switch(
-                      activeColor: Colors.green,
-                      activeTrackColor: Colors.grey,
-                      inactiveTrackColor: Colors.grey,
-                      value: statusValue,
-                      onChanged: (value) {
-                        statusValue = value;
-                        setState(() {});
-                      },
-                    )
-                  ],
-                ).paddingSymmetric(horizontal: 8),
-              ),
-              8.height,
-              MBSettingCommonCard(name: 'Online payments', icon: Icons.wallet_giftcard_rounded),
-              8.height,
-              MBSettingCommonCard(name: 'ATM Withdraw', icon: Icons.local_atm_sharp),
+              getField("Holder Name", User.instance.cards[0].name),
               16.height,
+              getField("Card Number", User.instance.cards[0].no),
+              16.height,
+              getField("Expiry Date",
+                  "${User.instance.cards[0].expiryDate.month}/${User.instance.cards[0].expiryDate.year}"),
+              16.height,
+              getField("CVV", User.instance.cards[0].cvv),
             ],
           ),
         ),

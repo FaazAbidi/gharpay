@@ -5,6 +5,7 @@ import 'package:gharpay/utils/AppColors.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:gharpay/utils/MBWidgets.dart';
 
 import '../backendApiSimulation.dart';
 import 'MBSignInScreen.dart';
@@ -60,22 +61,6 @@ class MBProfileScreenState extends State<MBProfileScreen> {
   @override
   void setState(fn) {
     if (mounted) super.setState(fn);
-  }
-
-  getField(String heading, String value) {
-    return value != null
-        ? Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(heading, style: boldTextStyle(size: 18))
-                  .paddingOnly(left: 16),
-              Text(value, style: TextStyle(fontSize: 13)).paddingOnly(left: 16),
-              10.height,
-              Divider(),
-            ],
-          )
-        : Container();
   }
 
   @override
