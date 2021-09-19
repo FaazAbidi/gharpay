@@ -183,17 +183,17 @@ class MBHomeScreenState extends State<MBHomeScreen> {
                         }
                         // BudgetDetails data = operationsList1[index];
                         return Container(
-                          width: HRAselected? context.width() * 1 : context.width() * 0.26,
-                          margin: EdgeInsets.all(5),
+                          width: HRAselected? context.width() * 1 : context.width() * 0.28,
+                          margin: EdgeInsets.all(1),
                           padding: EdgeInsets.only(top: 20, bottom: 20),
                           decoration: boxDecorationWithRoundedCorners(borderRadius: BorderRadius.all(Radius.circular(16)),boxShadow: defaultBoxShadow(), backgroundColor: appStore.cardColor),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(data.icon, size: 40, color: appPrimaryColor),
+                              Icon(data.icon, size: 35, color: appPrimaryColor),
                               10.height,
                               20.width,
-                              Text(data.budgetType, textAlign: TextAlign.center),
+                              Text(data.budgetType, textAlign: TextAlign.center, style: TextStyle(fontSize: 12.0)),
                             ],
                           ),
                         ).onTap(() {
