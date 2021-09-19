@@ -104,7 +104,7 @@ class _MBForexCalculatorState extends State<MBForexCalculator> {
                   child: Center(
                     child: DropdownButton(
                       // icon: Icon(Icons.money_rounded),
-                      borderRadius: BorderRadius.circular(15),
+                      // borderRadius: BorderRadius.circular(15),
                       hint:Text(
                         "Please choose a currency",
                         style: TextStyle(

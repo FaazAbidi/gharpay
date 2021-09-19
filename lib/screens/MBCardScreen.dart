@@ -41,7 +41,7 @@ class MBCardScreenState extends State<MBCardScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
+        body: User.instance.userType==UserType.sender ? SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -82,7 +82,7 @@ class MBCardScreenState extends State<MBCardScreen> {
               getField("CVV", User.instance.cards[0].cvv),
             ],
           ),
-        ),
+        ) : Center(child: Text('Feature not available for senders!'),),
       ),
     );
   }
