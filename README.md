@@ -23,4 +23,4 @@ Were Happy that at least we were able to put something on the table rather than 
 ## What we learned
 Building this app was a surreal experience for all of us. We tackled problems
 ## What's next for GharPay
-We look forward to potential investors to look at our product!
+We look forward to potential investors to look at our product!!
